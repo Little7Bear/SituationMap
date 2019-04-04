@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <link rel="stylesheet" href="../base.css">
+    <link rel="stylesheet" href="network.css?v=2">
+    <script src="../../Scripts/jquery-3.2.1.min.js"></script>
+    <script src="../../Scripts/echarts.js"></script>
+    <script src="../../Scripts/heilongjiang.js"></script>
+    <script src="networkResourceAnalysis.js"></script>
+    <title>网络资源分析</title>
+</head>
+
+<body>
+    <div class="top">
+        <ul>
+            <li>
+                <a href="../MonitoringResourceAnalysis/MonitoringResourceAnalysis.html">监控资源分析</a>
+            </li>
+            <li>
+                <a href="../MeetingResourceAnalysis/Meeting.html">会议资源分析</a>
+            </li>
+            <li class="activity">
+                <a href="../NetworkResourceAnalysis/NetworkResourceAnalysis.html">网络资源分析</a>
+            </li>
+            <li>
+                <a href="../MediaResourceAnalysis/MediaResourceAnalysis.html">媒体资源分析</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="tab">
+            <ul>
+                <li class="nav">
+                    <img src="../../images/gaikuang_ic.png">
+                    <p>市级网络</p>
+                </li>
+                <li class="nav">
+                    <img src="../../images/gongan.png">
+                    <p>园区网络</p>
+                </li>
+                <!-- <li class="nav">
+                    <img src="../../images/jiaojing.png">
+                    <p>参考3</p>
+                </li>
+                <li class="nav">
+                    <img src="../../images/chengguang.png">
+                    <p>参考4</p>
+                </li>
+                <li class="nav">
+                    <img src="../../images/shuili.png">
+                    <p>参考5</p>
+                </li> -->
+            </ul>
+        </div>
+        <div class="mainBody">
+            <div class="mainContainer">
+                <div class="aside">
+                    <div class="figure">
+                        <h3>
+                            <span class="cityName">黑河市</span>至
+                            <span class="mainCity">哈尔滨</span>各小时带宽利用率：
+                        </h3>
+                        <p>总利用率：
+                            <span id="utilization">50</span>%
+                        </p>
+                        <div id="f1"></div>
+                    </div>
+                    <div class="figure">
+                        <h3>
+                            <span class="cityName">黑河市</span>至
+                            <span class="mainCity">哈尔滨</span>各小时延时：
+                        </h3>
+                        <p>当前延时：
+                            <span id="delay">234</span>ms</p>
+                        <div id="f2"></div>
+                    </div>
+                    <div class="figure">
+                        <h3>
+                            <span class="cityName">黑河市</span>至
+                            <span class="mainCity">哈尔滨</span>各小时丢包率：
+                        </h3>
+                        <p>总丢包率：
+                            <span id="packet">0.1</span>%</p>
+                        <div id="f3"></div>
+                    </div>
+                </div>
+                <div class="center">
+                    <div class="edge"></div>
+                    <div class="map" id="map"></div>
+                    <div class="map" hidden id="graph"></div>
+                    <div class="edge"></div>
+                </div>
+                <div class="aside table">
+                    <h3>全网实时运行情况</h3>
+                    <div class="table1">
+                        <div class="row">
+                            <span>分部</span>
+                            <span>带宽</span>
+                            <span>延时</span>
+                            <span>丢包率</span>
+                        </div>
+                        <div class="row2">
+                            <span>哈尔滨</span>
+                            <span>45M</span>
+                            <span>31ms</span>
+                            <span>0.39%</span>
+                        </div>
+                        <div class="row">
+                            <span>牡丹江</span>
+                            <span>8M</span>
+                            <span>47ms</span>
+                            <span>0.41%</span>
+                        </div>
+                        <div class="row2">
+                            <span>佳木斯</span>
+                            <span>21M</span>
+                            <span>11ms</span>
+                            <span>0.19%</span>
+                        </div>
+                        <div class="row">
+                            <span>七台河</span>
+                            <span>45M</span>
+                            <span>32ms</span>
+                            <span>0.38%</span>
+                        </div>
+                        <div class="row2">
+                            <span>黑河</span>
+                            <span>10M</span>
+                            <span>31ms</span>
+                            <span>0.18%</span>
+                        </div>
+                        <div class="row">
+                            <span>鸡西</span>
+                            <span>30M</span>
+                            <span>45ms</span>
+                            <span>0.425</span>
+                        </div>
+                    </div>
+
+                    <div class="table2" hi>
+                        <div class="row">
+                            <span>节点</span>
+                            <span>带宽</span>
+                            <span>延时</span>
+                            <span>丢包率</span>
+                        </div>
+                        <div class="row2">
+                            <span>大楼A</span>
+                            <span>45M</span>
+                            <span>31ms</span>
+                            <span>0.39%</span>
+                        </div>
+                        <div class="row">
+                            <span>大楼B</span>
+                            <span>8M</span>
+                            <span>47ms</span>
+                            <span>0.41%</span>
+                        </div>
+                        <div class="row2">
+                            <span>大楼C</span>
+                            <span>21M</span>
+                            <span>11ms</span>
+                            <span>0.19%</span>
+                        </div>
+                        <div class="row">
+                            <span>大楼D</span>
+                            <span>45M</span>
+                            <span>32ms</span>
+                            <span>0.38%</span>
+                        </div>
+                        <div class="row2">
+                            <span>大楼E</span>
+                            <span>10M</span>
+                            <span>31ms</span>
+                            <span>0.18%</span>
+                        </div>
+                        <div class="row">
+                            <span>大楼F</span>
+                            <span>30M</span>
+                            <span>45ms</span>
+                            <span>0.425</span>
+                        </div>
+                    </div>
+                    <div class="warning">
+                        <div class="table1">
+                            <p>今日警告信息</p>
+                            <p>哈尔滨至牡丹江链路02点54分中断，03点05分恢复</p>
+                            <p>哈尔滨至黑河链路05点54分中断，06点05分恢复</p>
+                            <p>哈尔滨至鸡西链路08点54分中断，09点05分恢复</p>
+                        </div>
+                        <div class="table2" hidden>
+                                <p>今日警告信息</p>
+                                <p>无警告信息</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

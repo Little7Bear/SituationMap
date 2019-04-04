@@ -1,0 +1,55 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0
+}
+
+a {
+    text-decoration: none;
+    color: #d3d3d3;
+}
+
+ol, ul {
+    list-style-type: none;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-size: 16px;
+    color: #fff;
+    background: url("../images/background-bc.png");
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+
+.top {
+    height: 72px;
+    font-size: 18px;
+    background-color: #2d2d30;
+}
+
+.top ul li {
+    width: 108px;
+    height: 72px;
+    margin-left: 17px;
+    float: left;
+    line-height: 72px;
+    text-align: center;
+    list-style: none;
+}
+
+.top ul .activity {
+    font-size: 25px;
+    width: 150px;
+}
+
+.top .activity a {
+    color: #fba420;
+}
+
+.top ul li a:hover {
+    color: #fba420;
+}

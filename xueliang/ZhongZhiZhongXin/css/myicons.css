@@ -1,0 +1,74 @@
+.icon-zhongdian {
+	background: url('../icon/重点人群管控_ic.png') no-repeat center center;
+}
+
+.icon-teshu {
+	background: url('../icon/特殊人群服务_ic.png') no-repeat center center;
+}
+
+.icon-shehui {
+	background: url('../icon/社会组织服务_ic.png') no-repeat center center;
+}
+
+.icon-maodun {
+	background: url('../icon/矛盾纠纷排查_ic.png') no-repeat center center;
+}
+
+.icon-hulu {
+	background: url('../icon/护路护线联防_ic.png') no-repeat center center;
+}
+
+.icon-yufang {
+	background: url('../icon/预防青少年犯罪_ic.png') no-repeat center center;
+}
+
+.icon-xiaoyuan {
+	background: url('../icon/校园周边防控_ic.png') no-repeat center center;
+}
+
+.icon-zongzhi {
+	background: url('../icon/综治中心_ic.png') no-repeat center center;
+}
+
+.icon-wangge {
+	background: url('../icon/网格化管理_ic.png') no-repeat center center;
+}
+
+
+/* click */
+
+.icon-zhongdian-click {
+	background: url('../icon/重点人群管控_ic_click.png') no-repeat center center;
+}
+
+.icon-teshu-click {
+	background: url('../icon/特殊人群服务_ic_click.png') no-repeat center center;
+}
+
+.icon-shehui-click {
+	background: url('../icon/社会组织服务_ic_click.png') no-repeat center center;
+}
+
+.icon-maodun-click {
+	background: url('../icon/矛盾纠纷排查_ic_click.png') no-repeat center center;
+}
+
+.icon-hulu-click {
+	background: url('../icon/护路护线联防_ic_click.png') no-repeat center center;
+}
+
+.icon-yufang-click {
+	background: url('../icon/预防青少年犯罪_ic_click.png') no-repeat center center;
+}
+
+.icon-xiaoyuan-click {
+	background: url('../icon/校园周边防控_ic_click.png') no-repeat center center;
+}
+
+.icon-zongzhi-click {
+	background: url('../icon/综治中心_ic_click.png') no-repeat center center;
+}
+
+.icon-wangge-click {
+	background: url('../icon/网格化管理_ic_click.png') no-repeat center center;
+}

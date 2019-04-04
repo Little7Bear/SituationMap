@@ -1,0 +1,62 @@
+.content {
+    width: 100%;
+    height: calc(100% - 72px);
+    padding: 10px 10px 0px 10px;
+    box-sizing: border-box;
+}
+
+.content .aside {
+    width: 25%;
+    height: 100%;
+    float: left;
+}
+
+.content .aside .figureContainer {
+    height: calc( 50% - 10px);
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    background: url('../../images/figure-bc.png') no-repeat 0 0;
+    background-size: 100% 100%;
+}
+
+.content .aside h3 {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    padding-top: 5px;
+}
+
+.content .aside .figureContainer>div {
+    width: 100%;
+    height: calc( 100% - 25px);
+}
+
+.content .aside:last-child {
+    background-image: url('../../images/排名_bg.png');
+    background-size: 100% 100%;
+    height: calc(100% - 10px);
+}
+
+.content .aside #onLinelist ul li span {
+    background: url('../../images/block-bc.png');
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #333;
+}
+
+.content .aside #onLinelist ul li .item li {
+    text-align: center;
+    height: 25px;
+    line-height: 25px;
+}
+
+.content .center {
+    width: 50%;
+    height: 100%;
+    float: left;
+}

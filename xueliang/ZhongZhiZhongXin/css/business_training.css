@@ -1,0 +1,96 @@
+/*左侧登录信息*/
+
+.login_info {
+	width: 100%;
+	height: auto;
+	margin-bottom: 25px;
+	font-family: "微软雅黑";
+	font-size: 15px;
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.login_info img {
+	width: 125px;
+	height: 145px;
+	margin: 10px 0px;
+	align-self: center;
+}
+
+.login_info p {
+	margin: 0;
+	padding: 0;
+	width: 125px;
+	letter-spacing: 0.5px;
+	line-height: 180%;
+	color: #d3d3d3;
+}
+
+.login_info span {
+	margin: 0px 2px;
+	color: #fba420;
+}
+
+.login_info_txt {
+	align-self: center;	
+}
+
+/*左侧菜单*/
+
+ul.list {
+	margin: 0;
+	padding: 0;
+}
+
+.list li {
+	height: 55px;
+	padding: 5px;
+	cursor: pointer;
+	font-size: 17px;
+	text-align: center;
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.list a {
+	width: auto;
+	text-decoration: none;
+	font-family: "微软雅黑";
+	color: #F9F9F9;
+}
+
+.blue {
+	background-color: #3b8bdc;
+	color: white;
+}
+
+
+/*右侧表格*/
+
+.center {
+	background-color: #333;
+}
+
+.icon-filter {
+	background: url(../img/filter.png) no-repeat center center;
+}
+
+.datagrid-header span {
+	font-size: 15px !important;
+}
+
+.datagrid-header-row {
+	Height: 30px;
+}
+
+.datagrid-cell {
+	font-size: 13px;
+}
+
+.datagrid-btable tr {
+	height: 28px;
+}

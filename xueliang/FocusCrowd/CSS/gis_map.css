@@ -1,0 +1,132 @@
+.west {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+}
+
+
+/*导航栏*/
+.left-nav {
+	background-color: #333;
+}
+.tab ul {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.tab ul li {
+	margin: 0;
+	padding: 5px 0px;
+	height: 100%;
+	text-align: center;
+	list-style: none;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 16px;
+	background-color: rgba(0,0,0,0);
+}
+
+.nav img {
+	width: 48px;
+	height: 48px;
+	margin: 0;
+	padding: 0;
+}
+
+hr {
+	margin: 0px 10px 0px 0px;
+	padding: 0;
+	border: 1px solid #484647;
+}
+
+#search_txt {
+	height: 22px;
+	width: 200px;
+	border: 0;
+	margin-left: 10px;
+	background-color: rgba(0,0,0,0);
+	color: #d0d0d2;
+	font-style: italic;
+}
+
+.search-bar-small {
+	width: 100%;
+	height: 30px;
+	background: url("../Image/search_框_bg.png") center/100% no-repeat;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.search-bar-small img{
+	width: 16px;
+	height: 16px;
+	margin-right: 8px;
+	cursor: pointer;
+}
+
+/*地图图标弹窗*/
+
+.info {
+	width: 450px;
+	height: 250px;
+	border-collapse: collapse;
+}
+
+.info td {
+	padding: 2px;
+	text-align: center;
+}
+
+.photo {
+	width: 100px;
+	height: 150px;
+	background: url("../Icon/head.jpg") center/100% no-repeat;
+}
+
+.table_bg {
+	width: 480px;
+	height: 280px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+
+
+/*导航栏*/
+
+.top {
+	height: 72px;
+	font-size: 18px;
+	background-color: #2d2d30;
+}
+
+.top ul li {
+	width: 108px;
+	height: 72px;
+	margin-left: 17px;
+	float: left;
+	line-height: 72px;
+	text-align: center;
+	list-style: none;
+}
+
+.top ul .activity {
+	font-size: 25px;
+	width: 150px;
+}
+
+.top .activity a {
+	color: #fba420;
+}
+
+.top ul li a:hover {
+	color: #fba420;
+}

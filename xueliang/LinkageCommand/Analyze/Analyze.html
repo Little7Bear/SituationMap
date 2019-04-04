@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../base.css">
+    <link rel="stylesheet" href="analyze.css">
+    <script src="../../Scripts/jquery-3.2.1.min.js"></script>
+    <script src="../../Scripts/echarts.js"></script>
+    <script src="analyze.js"></script>
+    <title>研判分析</title>
+</head>
+
+<body>
+    <div class="nav-bar">
+        <ul>
+            <li>
+                <a href="../VideoImageAcquisition/video.html">视频图像采集</a>
+            </li>
+            <li class="activity">
+                <a href="../Analyze/Analyze.html">研判分析</a>
+            </li>
+            <li>
+                <a href="../Rescue/rescue.html">救援紧急通道响应</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="left">
+            <div class="event">
+                <p class="bc"></p>
+                <div class="title">
+                    <span>案事件信息</span>
+                </div>
+                <div class="detailed">
+                    <ul>
+                        <li>事件描述：14：43分百货大楼一黑金店被抢，现场5人受伤，财产损失约700万，3名嫌疑人驾车逃窜。</li>
+                        <li>车牌：沪B 43254</li>
+                        <li>车型：五菱荣光</li>
+                        <li>车主：李元</li>
+                        <li>身份证：460315197602130822</li>
+                    </ul>
+                </div>
+                <div class="process">
+                    <ul>
+                        <li>14:45
+                            <span>接到群众举报</span>
+                        </li>
+                        <li>14:48
+                            <span>110到达案发现场</span>
+                        </li>
+                        <li>14:58
+                            <span>根据现场群众描述查找车辆</span>
+                        </li>
+                        <li>15:02
+                            <span>发现可疑车辆</span>
+                        </li>
+                        <li>15:06
+                            <span>沿城东大街向西行驶</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="plan">
+                <input type="button" value="预案">
+                <input type="button" value="方案">
+                <p class="plan-content">
+                    中国，是以华夏文明为源泉、中华文化为基础，并以汉族为主体民族的多民族国家，通用汉语、汉字，汉族与少数民族被统称为“中华民族”，又自称为炎黄子孙、龙的传人。 中国是世界四大文明古国之一，有着悠久的历史，距今约5000年前，以中原地区为中心开始出现聚落组织进而形成国家，后历经多次民族交融和朝代更迭，直至形成多民族国家的大一统局面。20世纪初辛亥革命后，君主政体退出历史舞台，共和政体建立。1949年中华人民共和国成立后，在中国大陆建立了人民代表大会制度的政体。
+                </p>
+            </div>
+        </div>
+        <div class="data-container">
+            <div class="data">
+                <ul class="data-ul">
+                    <li>
+                        <span>刑警</span>
+                        <p>1614</p>
+                    </li>
+                    <li>
+                        <span>民警</span>
+                        <p>3214</p>
+                    </li>
+                    <li>
+                        <span>车辆</span>
+                        <p>845</p>
+                    </li>
+                    <li>
+                        <span>武器</span>
+                        <p>5432</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="figure" id="histogram"></div>
+            <div class="linkage-unit">
+                <p class="bc"></p>
+                <div class="title">
+                    联动单位
+                </div>
+                <div class="table-container">
+                    <table class="unit-content" cellspacing="10">
+                        <thead>
+                            <th>单位名称</th>
+                            <th>负责人</th>
+                            <th colspan="">当前任务</th>
+                            <th>操作</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>交警第三大队</td>
+                                <td>欧飞</td>
+                                <td>赶赴第一堵控地点</td>
+                                <td>▲</td>
+                            </tr>
+                            <tr>
+                                <td>工业区派出所</td>
+                                <td>张辰</td>
+                                <td>赶赴案发现场</td>
+                                <td>▼</td>
+                            </tr>
+                            <tr>
+                                <td>亭林镇派出所</td>
+                                <td>赵爱国</td>
+                                <td>赶赴第二堵控地点</td>
+                                <td>▼</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

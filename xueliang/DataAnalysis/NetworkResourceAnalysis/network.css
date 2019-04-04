@@ -1,0 +1,131 @@
+.content {
+    width: 100%;
+    height: calc(100% - 72px);
+}
+
+.content .tab {
+    width: 88px;
+    height: 100%;
+    float: left;
+    background-color: #333;
+    color: #c7c7c7;
+    font-size: 16px;
+}
+
+.content .tab ul li {
+    height: 88px;
+    text-align: center;
+    list-style: none;
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.content .mainBody {
+    width: calc(100% - 88px);
+    height: 100%;
+    padding: 0 10px 0 10px;
+    box-sizing: border-box;
+    float: right;
+}
+
+.content .mainBody .mainContainer {
+    width: 100%;
+    height: 100%;
+}
+
+.content .mainBody .aside {
+    width: 25%;
+    height: 100%;
+    float: left;
+}
+
+.content .mainBody .aside .figure {
+    width: 100%;
+    height: calc(100% / 3 - 15px);
+    margin-top: 10px;
+    background: url("../../images/figure-bc.png") no-repeat 0 0;
+    background-size: 100% 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.content .mainBody .aside .figure h3 {
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+}
+
+.content .mainBody .aside .figure p {
+    margin-top: 5px;
+    height: 14px;
+    color: #3299ff;
+    font-size: 14px;
+}
+
+.content .mainBody .aside .figure div {
+    height: calc(100% - 44px);
+}
+
+.content .mainBody .table {
+    background-image: url('../../images/排名_bg.png');
+    background-size: 100% 100%;
+    padding: 10px;
+    height: calc(100% - 20px);
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+.content .mainBody .table div {
+    margin-top: 10px;
+}
+
+.content .mainBody .table .row span {
+    width: 67px;
+    height: 30px;
+    margin-right: 5px;
+    display: inline-block;
+    background-color: #3f4045;
+    text-align: center;
+    line-height: 30px;
+}
+
+.content .mainBody .table .row2 span {
+    width: 67px;
+    height: 30px;
+    margin-right: 5px;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+}
+
+.content .mainBody .table .warning {
+    margin-top: 20px;
+}
+
+.content .mainBody .table .warning p {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.content .mainBody .table .warning p:first-child {
+    color: #d08d21;
+    text-align: center;
+}
+
+.content .mainBody .center {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.content .mainBody .center .edge {
+    width: 100%;
+    height: 100px;
+}
+
+.content .mainBody .center .map {
+    width: 100%;
+    height: calc(100% - 200px);
+}

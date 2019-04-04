@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../css/utility.css">
+		<link rel="stylesheet" type="text/css" href="../css/user_basic_info.css">
+		<!--<link rel="stylesheet" type="text/css" href="../css/base.css" />-->
+		<title>人员基本信息库</title>
+		<script src="../js/echarts.js"></script>
+		<script src="../js/jquery-3.2.1.min.js"></script>
+		<script src="../js/heilongjiang.js"></script>
+		<script src="../js/user_basic_info.js"></script>
+
+	</head>
+
+	<body>
+		<div class="wrap">
+			<!-- 标题栏 -->
+			<div class="nav-bar">
+				<ul>
+					<li class="activity">
+						<a href="user_basic_info.html">人员基本信息库</a>
+					</li>
+					<li>
+						<a href="user_record.html">个人档案信息</a>
+					</li>
+					<li>
+						<a href="family_record.html">家庭档案信息</a>
+					</li>
+				</ul>
+			</div>
+			<!-- 内容 -->
+			<div class="content">
+				<div class="user-basic-info-item">
+					<div class="chart-block">
+						<p class="item-title">全省人员分布现状</p>
+						<table>
+							<tr class="alt">
+								<td>总人口</td>
+								<td>XXX人</td>
+							</tr>
+							<tr>
+								<td>常住人口</td>
+								<td>XXX人</td>
+							</tr>
+							<tr class="alt">
+								<td>流动人口</td>
+								<td>XXX人</td>
+							</tr>
+							<tr>
+								<td>重点监控人群</td>
+								<td>XXX人</td>
+							</tr>
+							<tr class="alt">
+								<td>通缉布控人群</td>
+								<td>XXX人</td>
+							</tr>
+							<tr>
+								<td>社区数量</td>
+								<td>XXX人</td>
+							</tr>
+						</table>
+					</div>
+					<div class="chart-block">
+						<p class="item-title">市级流动人口统计图</p>
+						<div id="floating-population-chart" class="chart">
+						</div>
+					</div>
+				</div>
+				<div class="user-basic-info-item">
+					<div class="chart-block">
+						<p class="item-title">GIS地图</p>
+						<div class="map" id="map"></div>
+					</div>
+					<div class="chart-block">
+						<p class="item-title">市级重点监控人群</p>
+						<div id="monitory-population-chart" class="chart">
+						</div>
+					</div>
+				</div>
+				<div class="user-basic-info-item">
+					<div class="chart-block">
+						<p class="item-title">市级常驻人口统计图</p>
+						<div id="permanent-population-chart" class="chart"></div>
+					</div>
+					<div class="chart-block">
+						<p class="item-title">市级通缉布控人群</p>
+						<div id="wanted-population-chart" class="chart"></div>
+					</div>
+				</div>
+			</div>
+	</body>
+
+</html>

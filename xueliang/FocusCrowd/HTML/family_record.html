@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../CSS/style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/utility.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/family_record.css">
+    <title>家庭档案信息</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+    <script src="../Script/echarts.js"></script>
+    <script src="../Script/family_record.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- 标题栏 -->
+        <div class="top">
+            <ul>
+                <li class="activity">
+                    <a href="family_record.html">家庭档案信息</a>
+                </li>
+                <li>
+                    <a href="user_basic_info.html">人员基本信息库</a>
+                </li>
+                <li>
+                    <a href="user_record.html">个人档案信息</a>
+                </li>
+            </ul>
+        </div>
+        <!-- 内容 -->
+        <div class="content">
+            <!-- 家庭成员列表 -->
+            <div class="family">
+                <div class="family-member">
+                    <p class="item-title">户主</p>
+                    <div class="family-member-info">
+                        <span></span>
+                        <ul>
+                            <li>姓名：张文配</li>
+                            <li>职业：软件开发工程师</li>
+                            <li>生日：1987年5月</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="family-member">
+                    <p class="item-title">妻子</p>
+                    <div class="family-member-info">
+                        <span></span>
+                        <ul>
+                            <li>姓名：梁佳佳</li>
+                            <li>职业：花店老板</li>
+                            <li>生日：1989年3月</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="family-member">
+                    <p class="item-title">父子</p>
+                    <div class="family-member-info">
+                        <span></span>
+                        <ul>
+                            <li>姓名：张齐</li>
+                            <li>职业：学生</li>
+                            <li>生日：2000年1月</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="family-member">
+                    <p class="item-title">父女</p>
+                    <div class="family-member-info">
+                        <span></span>
+                        <ul>
+                            <li>姓名：张海玲</li>
+                            <li>职业：学生</li>
+                            <li>生日：2003年8月</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 家庭信息 -->
+            <div class="family-info">
+
+                <!-- 家庭所在位置信息 -->
+                <div class="family-info-item">
+                    <div class="map-block">
+                        <p class="item-title">家庭所在位置信息</p>
+                        <div id="family-location" class="map"></div>
+                    </div>
+                </div>
+
+                <!-- 家庭所在社区资料 -->
+                <div class="family-info-item">
+                    <div class="six-face">
+                        <div class="column">
+                            <div class="item bottom">
+                                <p class="item-title">家庭收入情况</p>
+                                <ul class="blue-li">
+                                    <li>2014年收入50万</li>
+                                    <li>2015年收入51万</li>
+                                    <li>2016年收入60万</li>
+                                    <li>2017年收入65万</li>
+                                </ul>
+                            </div>
+                            <div class="item bottom">
+                                <p class="item-title">家庭水电使用情况</p>
+                                <div id="water-and-electricity-chart" class="chart"></div>
+                            </div>
+                            <div class="item">
+                                <p class="item-title">家庭所在社区资料</p>
+                                <ul class="blue-li">
+                                    <li>民警：李旭明</li>
+                                    <li>社区主任：张恒宇</li>
+                                    <li>行政：刘洋</li>
+                                    <li>医疗：郭晓冬</li>
+                                    <li>教育：陈志强</li>
+                                    <li>社区人口：300</li>
+                                    <li>流动人口：56</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="column right">
+                            <div class="item bottom">
+                                <!-- 家庭关系情况 -->
+                                <p class="item-title">家庭关系情况</p>
+                                <ul class="blue-li">
+                                    <li>户主</li>
+                                    <li>妻子</li>
+                                    <li>父子</li>
+                                    <li>父女</li>
+                                </ul>
+                            </div>
+                            <div class="item bottom">
+                                <p class="item-title">家庭近期就诊情况</p>
+                                <div id="family-see-doctor-chart" class="chart"></div>
+                            </div>
+                            <div class="item">
+                                <p class="item-title">社区就诊统计</p>
+                                <div id="community-see-doctor-chart" class="chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

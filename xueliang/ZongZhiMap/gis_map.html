@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>综合地图</title>
+		<link rel="stylesheet" type="text/css" href="../FocusCrowd/CSS/themes/black/easyui.css" />
+		<link rel="stylesheet" href="../FocusCrowd/CSS/gis_map.css">
+		<link rel="stylesheet" type="text/css" href="../FocusCrowd/CSS/style.css">
+		<link rel="stylesheet" type="text/css" href="../FocusCrowd/CSS/utility.css">
+		<script src="../FocusCrowd/Script/icon_data.js?v=2"></script>
+		<script type="text/javascript" src="../FocusCrowd/Script/jquery.min.js"></script>
+		<script type="text/javascript" src="../FocusCrowd/Script/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=5QPtGMcTBaFfKtoZmHQhnFpg9a4B3BGb"></script>
+		<script type="text/javascript" src="../FocusCrowd/Script/gis_map.js"></script>
+	</head>
+
+	<body class="easyui-layout" style="overflow: hidden;">
+		<!--<div data-options="region:'north'" style="height:74px" style="overflow: hidden;">
+			<div class="top" style="overflow: hidden;">
+				<ul>
+					<li class="activity">
+						<a href="#">综合地图</a>
+					</li>
+				</ul>
+			</div>
+		</div>-->
+
+		<div class="west" data-options="region:'west',split:false,title:'',collapsible:false" style="width: 328px; height: 100%;">
+			<div class="left-nav" style="width: 88px; height: 100%;">
+				<div class="tab">
+					<ul>
+						<li class="nav">
+							<img src="../FocusCrowd/Image/监控地图_ic.png" class="jk">
+							<p>监控地图</p>
+						</li>
+						<li class="nav">
+							<img src="../FocusCrowd/Image/企业地图_ic.png" class="qy">
+							<p>企业地图</p>
+						</li>
+						<li class="nav">
+							<img src="../FocusCrowd/Image/人员地图_ic.png" class="rr">
+							<p>人员地图</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="left">
+				<div class="search-bar-small">
+					<input type="text" name="seatch_txt" id="search_txt" value="搜索监控点" />
+					<img src="../FocusCrowd/Image/search_ic.png" />
+				</div>
+				<div class="tree">
+					<ul id="tt" class="easyui-tree" data-options="animate:true,checkbox:true">
+						<li>
+							<span>公安</span>
+							<ul>
+								<li id="12">
+									<span>治安卡口</span>
+								</li>
+								<li>
+									<span>主要街道</span>
+								</li>
+								<li>
+									<span>政府周边</span>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<span>人员信息</span>
+							<ul>
+								<li>
+									<span>分布</span>
+									<ul>
+										<li>
+											<span>出租屋分布</span>
+										</li>
+										<li>
+											<span>流动人口分布</span>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<span>专题</span>
+									<ul>
+										<li>
+											<span>出租屋专题</span>
+										</li>
+										<li>
+											<span>流动人口专题</span>
+										</li>
+										<li>
+											<span>特殊人群专题</span>
+											<ul>
+												<li>
+													<span>涉毒</span>
+												</li>
+												<li>
+													<span>重大刑事犯罪前科</span>
+												</li>
+												<li>
+													<span>重点上访人员</span>
+												</li>
+												<li>
+													<span>肇事肇祸精神病人</span>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<span>车辆信息</span>
+							<ul>
+								<li>
+									<span>警用车辆</span>
+								</li>
+								<li>
+									<span>城管车辆</span>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div data-options="region:'center',title:''" border="false">
+			<div id="bmap" class="bmap" style="width: 100%; height: 100%;">
+			</div>
+	</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="wclassth=device-wclassth, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../CSS/style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/utility.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/user_record.css">
+    <title>个人档案信息</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../Script/user_record.js"></script>
+    <script src="../Script/echarts-all.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- 标题栏 -->
+        <div class="top">
+            <ul>
+                <li class="activity">
+                    <a href="user_record.html">个人档案信息</a>
+                </li>
+                <li>
+                    <a href="user_basic_info.html">人员基本信息库</a>
+                </li>
+                <li>
+                    <a href="family_record.html">家庭档案信息</a>
+                </li>
+            </ul>
+        </div>
+        <!-- 内容 -->
+        <div class="content">
+            <!-- 搜索框 -->
+            <div class="search-bar">
+                <input class="tbx-search" type="text">
+                <a class="search" type="submit"></a>
+            </div>
+            <!-- 人员基本信息 -->
+            <div class="user-basic-info">
+                <img src="" alt="">
+                <table>
+                    <tr>
+                        <td class="key">姓名：</td>
+                        <td class="value">张文配</td>
+                        <td class="key">家庭成员：</td>
+                        <td class="value">张文配</td>
+                        <td class="key">就业信息：</td>
+                        <td class="value">黑龙江美电贝尔科技有限公司</td>
+                    </tr>
+                    <tr>
+                        <td class="key">性别：</td>
+                        <td class="value">男</td>
+                        <td class="key">家庭住址：</td>
+                        <td class="value">哈尔滨市X区X街道</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="key">出生日期：</td>
+                        <td class="value">1987年12月30日</td>
+                        <td class="key">政治背景及信仰：</td>
+                        <td class="value">少先队员，无神论者</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="user-relative-info">
+                <!-- 社会关系神经图 -->
+                <div class="user-relative-info-item-left">
+                    <p class="item-title">社会关系神经图</p>
+                    <div id="community-relationship-chart" class="chart">
+                    </div>
+                </div>
+                <div class="user-relative-info-item-right">
+                    <!-- 个人近期处境；出省行为分析 -->
+                    <div class="list-example">
+                        <p class="item-title">个人近期出境、出省行为分析</p>
+                        <div class="trip">
+                            <ui class="trip">
+                                <li>2018年3月1日 乘坐xxx次动车 x车厢x号坐至广州</li>
+                                <li>2018年3月1日 乘坐xxx次动车 x车厢x号坐至广州</li>
+                                <li>2018年3月1日 乘坐xxx次动车 x车厢x号坐至广州</li>
+                                <li>2018年3月1日 乘坐xxx次动车 x车厢x号坐至广州</li>
+                                <li>2018年3月1日 乘坐xxx次动车 x车厢x号坐至广州</li>
+                                <li>2018年3月1日 乘坐xxx次动车 x车厢x号坐至广州</li>
+                                <li>2018年3月1日 乘坐xxx次动车 x车厢x号坐至广州</li>
+                            </ui>
+                        </div>
+                    </div>
+                    <!-- 历史违法行为 -->
+                    <div class="list-example">
+                        <p class="item-title">历史违法行为</p>
+                        <ol>
+                            <li>XXXXXXXX</li>
+                            <li>XXXXXXXX</li>
+                            <li>XXXXXXXX</li>
+                            <li>XXXXXXXX</li>
+                            <li>XXXXXXXX</li>
+                            <li>XXXXXXXX</li>
+                        </ol>
+                    </div>
+                    <!-- 历史违章行为 -->
+                    <div class="list-example">
+                        <p class="item-title">历史违章行为</p>
+                        <ol>
+                            <li>XXXXXXXX</li>
+                            <li>XXXXXXXX</li>
+                            <li>XXXXXXXX</li>
+                            <li>XXXXXXXX</li>
+                            <li>XXXXXXXX</li>
+                            <li>XXXXXXXX</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="user-relative-info-item-right">
+                    <!-- 名下车辆情况 -->
+                    <div class="chart-example">
+                        <p class="item-title">名下车辆情况</p>
+                        <div></div>
+                    </div>
+                    <!-- 名企业辆情况 -->
+                    <div class="chart-example">
+                        <p class="item-title">名企业辆情况</p>
+                        <div></div>
+                    </div>
+                    <!-- 名下财产情况 -->
+                    <div class="chart-example">
+                        <p class="item-title">名下财产情况</p>
+                        <div></div>
+                    </div>
+                    <!-- 名下不动产情况 -->
+                    <div class="chart-example">
+                        <p class="item-title">名下不动产情况</p>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

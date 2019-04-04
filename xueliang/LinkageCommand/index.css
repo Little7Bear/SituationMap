@@ -1,0 +1,63 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: url('../images/background-bc.png') no-repeat;
+    block-size: 100% 100%;
+    display:flex;
+    display: -webkit-flex; /* Safari */
+    align-items:center;
+    justify-content: center;
+}
+
+.max-container {
+    width: 1156px;
+    height: 552px;
+}
+
+.nav-container {
+    height: 250px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 54px;
+}
+
+.nav-container>div {
+    position: relative;
+    width: 352px;
+    height: 100%;
+    float: left;
+    font-size: 24px;
+    font-family: 'Microsoft YaHei';
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    background-color: #2f2f30;
+}
+
+.nav-container>div>img {
+    width: 120px;
+    height: 120px;
+    margin-top: 42px;
+    margin-bottom: 25px;
+}
+
+a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 352px;
+    height: 250px;
+}
+
+.nav-container>div:hover {
+    background-color: #3b8bdc;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../css/themes/black/easyui.css">
+		<link rel="stylesheet" type="text/css" href="../css/themes/icon.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../css/utility.css" />
+		<link rel="stylesheet" type="text/css" href="../css/business_training.css" />
+		<title>业务培训系统</title>
+		<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/business_training.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/datagrid-filter.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body id="content" class="easyui-layout">
+		<div data-options="region:'north'" style="height:72px" border="false">
+			<!-- 标题栏 -->
+			<div class="top">
+				<ul>
+					<li>
+						<a class="back" onclick="closeWindow()"></a>
+					</li>
+					<li class="activity">
+						<a href="business_training.html">业务培训系统</a>
+					</li>
+					<li>
+						<a href="../ZongZhiCenter/PerformanceAppraisal/Index.html">绩效考核系统</a>
+					</li>
+					<li>
+						<a href="../ZongZhiCenter/WorkStatistics/Index.html">工作统计系统</a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+		<div data-options="region:'west',split:false,title:'登录信息',collapsible:false" border="false" style="width: 154px; height: 100%;">
+			<div class="login_info">
+				<img src="../img/head.png" />
+
+				<div class="login_info_txt">
+					<p>您好,张汝沛</p>
+					<p>您是第<span>14</span>次登录</p>
+					<p>上次登录时间：</p>
+					<p>2018年4月3日</p>
+					<p>您的学分为：<span>100</span></p>
+				</div>
+			</div>
+			<div class="easyui-accordion" style="width:100%;" border="false">
+				<div title="我的课程">
+					<ul class="list">
+						<li>
+							<a href="#">在线课程</a>
+						</li>
+						<li>
+							<a href="#">面授课程</a>
+						</li>
+					</ul>
+				</div>
+				<div title="培训档案">
+					<ul class="list">
+						<li>
+							<a href="#">学习记录</a>
+						</li>
+						<li>
+							<a href="#">考试成绩</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="center" data-options="region:'center',title:'详细信息'" style="overflow: hidden;" border="false">
+			<table id="dg" class="easyui-datagrid" border="false" data-options="rownumbers:true,multipleSelect:true,url:'datagrid_data1.json',method:'get'">
+				<thead>
+					<tr>
+						<th data-options="field:'ck',checkbox:true"></th>
+						<th data-options="field:'coursename',width:30,align:'center'">课程名称</th>
+						<th data-options="field:'period',width:10,align:'center'">学时</th>
+						<th data-options="field:'credit',width:10,align:'center'">学分</th>
+						<th data-options="field:'coursetype',width:20,align:'center'">课程类型</th>
+						<th data-options="field:'coursesystem',width:15,align:'center'">课程体系</th>
+						<th data-options="field:'mediatype',width:15,align:'center'">授课形式</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</body>
+
+</html>

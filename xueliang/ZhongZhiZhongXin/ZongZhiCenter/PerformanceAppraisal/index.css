@@ -1,0 +1,120 @@
+/* 左侧考核区域 */
+
+body {
+    background-color: #333333;
+}
+
+.nav-wrap {
+    width: 154px;
+    height: 100%;
+    float: left;
+    color: #c7c7c7;
+}
+
+.examine-container {
+    position: relative;
+    text-align: left;
+}
+
+.examine-container>div>h3 {
+    line-height: 66px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #c7c7c7;
+    text-indent: 15px;
+    background-color: #34343a;
+}
+
+.title-icon {
+    position: absolute;
+    top: 29px;
+    right: 8px;
+    width: 15px;
+    height: 9px;
+    background: url("../../../images/down.png");
+}
+
+.examine-container {
+    background-color: #2b2b2e;
+}
+
+.examine-container:nth-child(1) {
+    height: 330px;
+}
+
+.examine-container:nth-child(2) {
+    height: 264px;
+}
+
+.examine-container:nth-child(3) {
+    height: calc(100% - 594px);
+}
+
+examine {
+    background-color: #2b2b2e;
+}
+
+.examine>ul>li {
+    line-height: 66px;
+    text-indent: 15px;
+}
+
+.examine>ul>li:hover{
+    cursor: pointer;
+}
+
+.examine>ul>li>img {
+    margin-bottom: -3px;
+}
+
+.examine>p {
+    line-height: 25px;
+    text-indent: 2em;
+}
+
+/* 右侧表格区域 */
+
+.table-wrap {
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 154px);
+    height: 100%;
+    float: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+.table-container {
+    width: calc(100% / 3);
+    height: 100%;
+    float: left;
+    margin-left: 10px;
+    text-align: center;
+    background: url("../../../images/排名_bg.png");
+    background-size: auto 100%;
+}
+
+.table-container>h3 {
+    line-height: 56px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.table {
+    width: 100%;
+    height: calc(100% - 56px);
+    font-size: 18px;
+}
+
+th {
+    height: 66px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #3f3f46;
+}
+
+tr:hover{
+    background-color: #3B8BDC;
+}

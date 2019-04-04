@@ -1,0 +1,9 @@
+{"total":28,"rows":[
+	{"coursename":"社区管理","period":"1","credit":5,"coursetype":"必修课","coursesystem":"高级","mediatype":"文档"},
+	{"coursename":"社区招录考试","period":"3","credit":3,"coursetype":"必修课","coursesystem":"初级","mediatype":"视频"},
+	{"coursename":"城市社区建设与管理","period":"2","credit":2,"coursetype":"必修课","coursesystem":"中级","mediatype":"视频"},
+	{"coursename":"社区内安全问题处理","period":"1","credit":5,"coursetype":"必修课","coursesystem":"中级","mediatype":"文档"},
+	{"coursename":"城市社区管理","period":"1","credit":4,"coursetype":"选修课","coursesystem":"高级","mediatype":"视频"},
+	{"coursename":"农村社区建设","period":"1","credit":5,"coursetype":"选修课","coursesystem":"高级","mediatype":"视频"},
+	{"coursename":"社区流动人扩服务建设","period":"1","credit":5,"coursetype":"必修课","coursesystem":"高级","mediatype":"文档"}
+]}

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <link rel="stylesheet" href="../base.css">
+    <link rel="stylesheet" href="monitoringResourceAnalysis.css">
+    <script src="../../Scripts/jquery-3.2.1.min.js"></script>
+    <script src="../../Scripts/echarts.js"></script>
+    <script src="../../Scripts/heilongjiang.js"></script>
+    <script src="monitoringResourceAnalysis.js"></script>
+    <title>监控资源分析</title>
+</head>
+
+<body>
+    <div class="top">
+        <ul>
+            <li class="activity">
+                <a href="../MonitoringResourceAnalysis/MonitoringResourceAnalysis.html">监控资源分析</a>
+            </li>
+            <li>
+                <a href="../MeetingResourceAnalysis/Meeting.html">会议资源分析</a>
+            </li>
+            <li>
+                <a href="../NetworkResourceAnalysis/NetworkResourceAnalysis.html">网络资源分析</a>
+            </li>
+            <li>
+                <a href="../MediaResourceAnalysis/MediaResourceAnalysis.html">媒体资源分析</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="tab">
+            <ul>
+                <li class="nav">
+                    <img src="../../images/gaikuang_ic.png">
+                    <p>概况</p>
+                </li>
+                <li class="nav">
+                    <img src="../../images/gongan.png">
+                    <p>公安系统</p>
+                </li>
+                <li class="nav">
+                    <img src="../../images/jiaojing.png">
+                    <p>交警系统</p>
+                </li>
+                <li class="nav">
+                    <img src="../../images/chengguang.png">
+                    <p>城管系统</p>
+                </li>
+                <li class="nav">
+                    <img src="../../images/shuili.png">
+                    <p>水利系统</p>
+                </li>
+            </ul>
+        </div>
+        <div class="main" id="main">
+            <!--            begin 概况              -->
+            <div class="generalSituationOf" hidden>
+                <div class="figure">
+                    <div class="figure-block">
+                        <h3>全省接入监控统计</h3>
+                        <div id="allResources"></div>
+                    </div>
+                    <div class="figure-block">
+                        <h3>目前在线监控资源统计</h3>
+                        <div id="online"></div>
+                    </div>
+                    <div class="figure-block">
+                        <h3>全省各区域接入资源统计</h3>
+                        <div id="areaAccess"></div>
+                    </div>
+                </div>
+                <div class="map" id="map"></div>
+                <div class="figure">
+                    <div class="figure-block">
+                        <h3>单一监控点实时观看次数统计</h3>
+                        <div id="singleMonitor"></div>
+                    </div>
+                    <div class="figure-block">
+                        <h3>24小时接入点位观看次数统计</h3>
+                        <div id="accessPoint"></div>
+                    </div>
+                    <div class="figure-block">
+                        <h3></h3>
+                        <div id="dd"></div>
+                    </div>
+                </div>
+            </div>
+            <!--            begin 概况              -->
+
+            <!--            begin 公安系统              -->
+            <div class="security" hidden>
+                <div class="figure">
+                    <div class="figure-block">
+                        <h3 class="figure-title" id="gaTitle">接入公安监控资源类型排名</h3>
+                        <div id="securityMonitoring"></div>
+                    </div>
+                    <div class="figure-block">
+                        <h3 class="figure-title" id="jgTitle">公安系统结构化摄像头接入数量</h3>
+                        <div id="structuredCamera"></div>
+                    </div>
+                    <div class="figure-block">
+                        <h3 class="figure-title" id="jwtTitle">警务通终端数据排名</h3>
+                        <div id="policeSystem"></div>
+                    </div>
+                </div>
+                <div class="map" id="securityMap"></div>
+            </div>
+            <!--            begin 公安系统              -->
+
+            <!--            begin 交警系统              -->
+            <div class="traffic" hidden>
+                <div class="figure">
+                    <div class="figure-block">
+                        <h3>全省接入电子警察终端数量</h3>
+                        <div id="allElectronicPolice"></div>
+                    </div>
+                    <div class="figure-block">
+                        <h3 class="figure-title" id="onlineElectronicTitle">
+                            全省电子警察在线情况
+                        </h3>
+                        <div id="onlineElectronicPolice"></div>
+                    </div>
+                    <div class="figure-block">
+                        <h3 class="figure-title" id="areaEPTitle">
+                            全省各区域接入电子警察资源统计
+                        </h3>
+                        <div id="areaElectronicPolice"></div>
+                    </div>
+                </div>
+                <div class="map" id="trafficMap"></div>
+                <div class="figure">
+                    <div class="figure-block">
+                        <h3>主要地区车流量信息统计</h3>
+                        <div id="carTraffic"></div>
+                    </div>
+                    <div class="figure-block">
+                        <h3 class="figure-title" id="dayOfCarTitle">24小时车流量统计</h3>
+                        <div id="dayOfCar"></div>
+                    </div>
+                    <div class="figure-block">
+                        <h3></h3>
+                        <div id="sadfgrr"></div>
+                    </div>
+                </div>
+            </div>
+            <!--            end 交警系统              -->
+
+            <div class="urbanManagement" hidden>
+                待补充
+            </div>
+            <div class="hydraulic" hidden>
+                待补充
+            </div>
+
+            <!--            begin 自定义地区24小时车流量(详情)              -->
+            <div class="customDay" hidden>
+                <div class="cTop">
+                    <div class="cAside">
+                        <h3>车辆类型统计</h3>
+                        <div id="carType"></div>
+                    </div>
+                    <div class="cCenter" id="customMap"></div>
+                    <div class="cAside">
+                        <h3>车辆违法类型分析</h3>
+                        <div id="breakLaw"></div>
+                    </div>
+                </div>
+                <div class="cBottom">
+                    <h3>24小时车流量统计</h3>
+                    <div id="customDayCar"></div>
+                </div>
+            </div>
+            <!--            end 自定义地区24小时车流量(详情)               -->
+
+            <!--            begin 全省电子警察在线情况(详情)              -->
+            <div class="allEP" hidden>
+                <div class="aepLeft" style="padding-top:10px;">
+                    <h3>电子警察在线情况</h3>
+                    <div id="aepOnline"></div>
+                </div>
+                <div class="aepRight" id="aepMap"></div>
+            </div>
+            <!--            end 全省电子警察在线情况(详情)                -->
+
+            <!--            begin 全省各区域接入电子警察资源统计(详情)              -->
+            <div class="partEP" hidden>
+                <div class="pepLeft" style="padding-top:10px;">
+                    <h3>全省接入电子警察终端数量</h3>
+                    <div id="pepFigure"></div>
+                </div>
+                <div class="pepRight" id="pepMap"></div>
+            </div>
+            <!--            end 全省各区域接入电子警察资源统计(详情)                -->
+
+            <!--            begin 接入公安资源类型排名(详情)              -->
+            <div class="partEP" hidden id="gacontainer">
+                <div class="pepLeft" style="padding-top:10px;">
+                    <h3>接入公安资源类型排名</h3>
+                    <div id="gaFigure"></div>
+                </div>
+                <div class="pepRight" id="gaMap"></div>
+            </div>
+            <!--            end 接入公安资源类型排名(详情)                -->
+
+            <!--            begin 结构化终端数据排名(详情)              -->
+            <div class="partEP" hidden id="jjcontainer">
+                <div class="pepLeft" style="padding-top:10px;">
+                    <h3>结构化终端数据排名</h3>
+                    <div id="jgFigure"></div>
+                </div>
+                <div class="pepRight" id="jgMap"></div>
+            </div>
+            <!--            end 结构化终端数据排名(详情)                -->
+
+            <!--            begin 警务通终端数据排名(详情)              -->
+            <div class="partEP" hidden id="jwtcontainer">
+                <div class="pepLeft" style="padding-top:10px;">
+                    <h3>警务通终端数据排名</h3>
+                    <div id="jwtFigure"></div>
+                </div>
+                <div class="pepRight" id="jwtMap"></div>
+            </div>
+            <!--            end 警务通终端数据排名(详情)                -->
+
+        </div>
+
+    </div>
+</body>
+
+</html>

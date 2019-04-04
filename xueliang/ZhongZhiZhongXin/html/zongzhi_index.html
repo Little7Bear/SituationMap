@@ -1,0 +1,60 @@
+<!DOCTYPE html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../css/themes/bootstrap/easyui.css">
+		<link rel="stylesheet" type="text/css" href="../css/themes/icon.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../css/utility.css" />
+		<link rel="stylesheet" type="text/css" href="../css/zongzhi_index.css" />
+		<link rel="stylesheet" type="text/css" href="../css/myicons.css" />
+		<title>业务培训系统</title>
+		<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/zongzhi_index.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.panel-body-noheader{
+				background-color: #2b2b2e;
+			}
+		</style>
+	</head>
+
+	<body class="easyui-layout" style="margin: 0;padding: 0;">
+		<div data-options="region:'center'" style="margin: 0;padding: 0;">
+			<div id="tt" class="easyui-tabs" style="margin: 0;padding: 0; overflow: hidden;">
+				<div title="重点人群管控" data-options="iconCls:'icon-zhongdian'">
+					<iframe class="frame" src="user_basic_info.html" frameborder="0">
+ 						<p>您的浏览器不支持  iframe 标签。</p>
+					</iframe>
+				</div>
+				<div title="特殊人群服务" data-options="iconCls:'icon-teshu'">
+					<p class="no_service"><span>没有连接到特殊人群服务数据服务器</span></p>
+				</div>
+				<div title="社会组织服务" data-options="iconCls:'icon-shehui'">
+					<p class="no_service"><span>没有连接到社会组织服务管理服务器</span></p>
+				</div>
+				<div title="矛盾纠纷排查" data-options="iconCls:'icon-maodun'">
+					<p class="no_service"><span>没有连接到矛盾纠纷排查管理服务器</span></p>
+				</div>
+				<div title="护路护线联防" data-options="iconCls:'icon-hulu'">
+					<p class="no_service"><span>没有连接到护路护线数据服务器</span></p>
+				</div>
+				<div title="预防青少年犯罪" data-options="iconCls:'icon-yufang'">
+					<p class="no_service"><span>没有连接到预防青少年犯罪业务应用服务器</span></p>
+				</div>
+				<div title="校园周边防控" data-options="iconCls:'icon-xiaoyuan'">
+					<p class="no_service"><span>没有连接到校园周边防控业务应用服务器</span></p>
+				</div>
+				<div id="zongzhi" title="综治中心" data-options="iconCls:'icon-zongzhi'" style="width:100%;">
+					
+				</div>
+				<div title="网格化管理" data-options="iconCls:'icon-wangge'">
+					<p class="no_service"><span>没有连接到网格化管理业务服务器</span></p>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>

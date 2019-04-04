@@ -1,0 +1,164 @@
+input {
+    border: none;
+    outline: medium;
+    cursor: pointer;
+    color: #fff;
+    background-color: #0070c0;
+}
+
+body {
+    background: url("../../images/background-bc.png") no-repeat 0 0;
+    background-size: 100% 100%;
+}
+
+/*-------- 内容-------- */
+
+.content {
+    height: calc(100% - 72px);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/*-------- 案件信息-------- */
+
+.content .left {
+    width: calc(40% - 20px);
+    height: 100%;
+    float: left;
+    margin-right: 20px;
+    box-sizing: border-box;
+}
+
+.content .left .event {
+    height: calc(55% - 10px);
+    background: url('../../images/block-bc.png');
+    background-size: 100% 100%;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 18px;
+    line-height: 40px;
+    padding-left: 20px;
+    background-color: #408080;
+}
+
+.bc {
+    width: 8px;
+    height: 40px;
+    background-color: yellow;
+    display: inline-block;
+    position: absolute;
+}
+
+.content .left .event .detailed {
+    height: calc((100% - 40px) / 2);
+    padding: 20px 20px;
+    background-color: #666;
+}
+
+.content .left .event .detailed ul li {
+    line-height: 30px;
+}
+
+.content .left .event .process {
+    height: calc((100% - 40px) / 2);
+    padding: 10px 20px;
+}
+
+.content .left .event .process ul li {
+    line-height: 30px;
+}
+
+/*-------- 预案-------- */
+
+.content .plan {
+    height: calc(45% - 20px);
+    margin-bottom: 10px;
+    margin-right: 20px;
+}
+
+.plan input {
+    height: 30px;
+    width: 80px;
+    border-radius: 5px;
+}
+
+.plan .plan-content {
+    height: calc(100% - 20px);
+    background: url('../../images/block-bc.png');
+    padding: 10px 20px 0 20px;
+    line-height: 25px;
+    width: calc(100% - 20px);
+}
+
+/*-------- 数据展示-------- */
+
+.data-container {
+    width: 60%;
+    height: 100%;
+    float: left;
+    background: url('../../images/block-bc.png');
+}
+
+.data {
+    height: 120px;
+}
+
+.data-ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.data-ul>li {
+    width: calc(25% - 20px);
+    height: 120px;
+    float: left;
+}
+
+.data-ul>li:nth-child(1) {
+    background-color: #194f4f;
+}
+
+.data-ul>li:nth-child(2) {
+    background-color: #17497e;
+}
+
+.data-ul>li:nth-child(3) {
+    background-color: #524b24;
+}
+
+.data-ul>li:nth-child(4) {
+    background-color: #263041;
+}
+
+.data-ul>li>span {
+    margin-left: 5px;
+    font-size: 18px;
+    line-height: 40px;
+}
+
+.data-ul>li>p {
+    font-size: 50px;
+    text-indent: 1em;
+}
+
+.figure {
+    height: calc((100% - 120px) * 0.55);
+}
+
+.linkage-unit {
+    height: calc((100% - 120px) * 0.45);
+}
+
+.table-container {
+    height: calc(100% - 40px);
+}
+
+.unit-content {
+    width: 100%;
+}
+
+.unit-content tr {
+    text-align: center;
+}

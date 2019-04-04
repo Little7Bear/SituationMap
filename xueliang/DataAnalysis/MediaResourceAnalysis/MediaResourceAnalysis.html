@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <link rel="stylesheet" href="../base.css">
+    <link rel="stylesheet" href="media.css">
+    <script src="../../Scripts/jquery-3.2.1.min.js"></script>
+    <script src="../../Scripts/echarts.js"></script>
+    <script src="../../Scripts/heilongjiang.js"></script>
+    <script src="media.js"></script>
+    <title>媒体资源解析</title>
+
+</head>
+
+<body>
+    <div class="top">
+        <ul>
+            <li>
+                <a href="../MonitoringResourceAnalysis/MonitoringResourceAnalysis.html">监控资源分析</a>
+            </li>
+            <li>
+                <a href="../MeetingResourceAnalysis/Meeting.html">会议资源分析</a>
+            </li>
+            <li>
+                <a href="../NetworkResourceAnalysis/NetworkResourceAnalysis.html">网络资源分析</a>
+            </li>
+            <li class="activity">
+                <a href="../MediaResourceAnalysis/MediaResourceAnalysis.html">媒体资源分析</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="aside">
+            <div class="figureContainer">
+                <h3>全省收看点播次数</h3>
+                <div id="f1"></div>
+            </div>
+            <div class="figureContainer">
+                <h3>移动APP点播排行</h3>
+                <div id="f2"></div>
+            </div>
+        </div>
+        <div class="center" id="map"></div>
+        <div class="aside">
+            <h3>各市点播节目排行</h3>
+            <div id="onLinelist">
+                <ul>
+                    <li class="original" hidden>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
