@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>武警秦皇岛支队勤务大数据态势</title>
+    <script src="../Scripts/echarts.js"></script>
+    <script src="../Scripts/jquery-3.2.1.min.js"></script>
+    <script src="situationalFigure.js"></script>
+    <script src="../Scripts/config.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="main">
+        <!--标题栏-->
+        <div class="title">
+            <div class="title_son">
+                <img src="../image/icon_badge.png" class="img_title" />
+                <h1 class="txt_title">武警秦皇岛支队勤务大数据态势</h1>
+            </div>
+            <div class="title_son">
+                <span class="txt_time" id="locationTime"></span>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="main-body">
+            <!--左边div-->
+            <div class="main_left">
+                <div class="divLeft">
+                    <div class="verticalBar"></div>
+                    <div class="showForces">
+                        <div class="showForcesTitle">
+                            <h2>
+                                <span id="teamName">秦皇岛支队</span>实时哨卫统计：</h2>
+                        </div>
+                        <div class="chart chart1">
+                            <div>
+                                <p>执勤人员总数</p>
+                                <p class="count">
+                                    <span id="totalCount"></span> 人
+                                </p>
+                            </div>
+                            <div>
+                                <p>当班哨兵总数</p>
+                                <p class="count">
+                                    <span id="sentryCount"></span> 人
+                                </p>
+                            </div>
+                            <div>
+                                <p>值班干部总数</p>
+                                <p class="count">
+                                    <span id="cadresCount"></span> 人
+                                </p>
+                            </div>
+                            <div>
+                                <p>剩余兵力</p>
+                                <p class="count">
+                                    <span id="remainingCount"></span> 人
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divLeft">
+                    <div class="verticalBar"></div>
+                    <div class="showForces">
+                        <div class="showForcesTitle">
+                            <h2 class="toggleTitle" id="toggleTitle">
+                                <span class="active">月度执勤兵力统计</span>
+                                <span style="margin-left: -4px;">季度执勤兵力统计</span>
+                            </h2>
+                        </div>
+                        <div class="chart" id="onDutyFigure"></div>
+                    </div>
+                </div>
+                <div class="divLeft">
+                    <div class="verticalBar"></div>
+                    <div class="showForces">
+                        <div class="showForcesTitle">
+                            <h2 id="title_peopleCounting">秦皇岛支队执勤人员执勤能力等级情况：</h2>
+                        </div>
+                        <div class="chart" id="peopleCountingFigure"></div>
+                    </div>
+                </div>
+                <div class="divLeft">
+                    <div class="verticalBar"></div>
+                    <div class="showForces">
+                        <div class="showForcesTitle">
+                            <h2 id="equipTitle">秦皇岛支队装备实时统计：</h2>
+                        </div>
+                        <div class="chart" id="weaponsFigure"></div>
+                    </div>
+                </div>
+            </div>
+            <!--中间div-->
+            <div class="main_mid">
+                <div id="map"></div>
+            </div>
+            <!--右边div-->
+            <div class="main_right">
+                <!--一图-->
+                <div class="divRight">
+                    <h2 class="data_title">
+                        <img src="../image/icon_callPolice.png" />
+                        <span id="title_callPolice"></span>
+                    </h2>
+                    <div class="half">
+                        <div class="lt_container">
+                            <span class="icon_littleTitle"></span>报警数据
+                        </div>
+                        <div class="data_content" id="bar1"></div>
+                    </div>
+                    <div class="half">
+                        <div class="lt_container">
+                            <span class="icon_littleTitle"></span>各类型报警占比
+                        </div>
+                        <div id="pie1" class="data_content"></div>
+                    </div>
+                </div>
+                <!--三图-->
+                <div class="divRight">
+                    <span>警卫目标入住情况：</span>
+                    <span id="target">80</span>
+                </div>
+
+                <div class="divRight">
+                    <div class="data_title">
+                        <img src="../image/icon_callPolice.png" />
+                        <h2 class="toggleTitle" id="examineTitle">
+                            <span class="active">月度查勤统计</span>
+                            <span style="margin-left: -4px;">季度查勤统计</span>
+                        </h2>
+                    </div>
+                    <div class="all-half">
+                        <div class="data_content" id="bar3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            //设置时间
+            setInterval(function () {
+                var myDate = new Date();
+                var year = myDate.getFullYear();
+                var month = myDate.getMonth() + 1;
+                var date = myDate.getDate();
+                var h = myDate.getHours();
+                var m = myDate.getMinutes();
+                var s = myDate.getSeconds();
+                var now = year + '年' + p(month) + "月" + p(date) + "日 " + p(h) + ':' + p(m) + ":" + p(s);
+                $("#locationTime").text(now);
+            }, 1000);
+
+            //获得图表容器
+            var chart = echarts.init(document.getElementById('map'));
+            var dutyChart = echarts.init(document.getElementById("onDutyFigure"));
+            var peopleChart = echarts.init(document.getElementById("peopleCountingFigure"));
+            var weaponsChart = echarts.init(document.getElementById("weaponsFigure"));
+            var histogram1 = echarts.init(document.getElementById("bar1"));
+            var histogram3 = echarts.init(document.getElementById("bar3"));
+            var pie1 = echarts.init(document.getElementById("pie1"));
+
+            //图表大小自适应
+            $(window).resize(function () {
+                chart.resize();
+                dutyChart.resize();
+                peopleChart.resize();
+                weaponsChart.resize();
+                histogram1.resize();
+                histogram3.resize();
+                pie1.resize();
+            });
+
+            //初始化地图
+            var nameMapObj = {
+                '北戴河区': '北戴河中队',
+                '昌黎县': '昌黎中队',
+                '抚宁县': '抚宁中队',
+                '海港区': '海港中队',
+                '卢龙县': '卢龙中队',
+                '青龙满族自治县': '青龙中队',
+                '山海关区': '山海关中队'
+            };
+            var markPointData = [{
+                    name: '北戴河中队',
+                    coord: [119.47, 39.889] //1控制左右，2控制上下
+                },
+                {
+                    name: '昌黎中队',
+                    coord: [119.05, 39.67]
+                },
+                {
+                    name: '抚宁中队',
+                    coord: [119.4, 40.07]
+                },
+                {
+                    name: '海港中队',
+                    coord: [119.59, 40.01]
+                },
+                {
+                    name: '卢龙中队',
+                    coord: [118.97, 39.99]
+                },
+                {
+                    name: '青龙中队',
+                    coord: [119.1, 40.4]
+                },
+                {
+                    name: '山海关中队',
+                    coord: [119.74, 40.08]
+                }
+            ]
+            initMap(chart, forces, '地图', nameMapObj, markPointData);
+
+            //初始化左边的图
+            $("#totalCount").text(initialize_totalNumber.totalCount);
+            $("#sentryCount").text(initialize_totalNumber.sentryCount);
+            $("#cadresCount").text(initialize_totalNumber.cadresCount);
+            $("#remainingCount").text(initialize_totalNumber.remainingCount);
+            initialize_BeOnDutyFigure(dutyChart, initialize_dutyData);
+            initialize_BeOnDutyFigure(peopleChart, initialize_peopleData);
+            initialize_WeaponsFigure(weaponsChart, initialize_weaponsData);
+            //执勤图表切换
+            $('#toggleTitle').children().on('click', function () {
+                $('#toggleTitle').children().toggleClass('active');
+                if ($(this).text().indexOf('月') !== -1) {
+                    initialize_BeOnDutyFigure(dutyChart, initialize_dutyData);
+                } else {
+                    initialize_BeOnDutyFigure(dutyChart, quarterDutyData);
+                }
+            });
+
+            //初始化右边的图
+            var myDate = new Date();
+            var month = myDate.getMonth() + 1;
+            document.getElementById("title_callPolice").innerHTML = "哨位报警数据（" + month + "月份）";
+            initialize_Pie(pie1, initialize_alarmClassData);
+            initialize_Histogram(histogram1, initialize_alarmData);
+            initialize_WeaponsFigure(histogram3, monthlyWeaponsData);
+            //查勤图表切换
+            $('#examineTitle').children().on('click', function () {
+                $('#examineTitle').children().toggleClass('active');
+                if ($(this).text().indexOf('月') !== -1) {
+                    initialize_WeaponsFigure(histogram3, monthlyWeaponsData);
+                } else {
+                    initialize_WeaponsFigure(histogram3, quarterWeaponsData);
+                }
+            });
+
+            //地图鼠标移动事件
+            chart.on('mouseover', function (params) {
+                params.dataIndex--;
+                //改变实时哨位统计
+                if (params.dataIndex === -1) {
+                    params.dataIndex = 1;
+                }
+                $("#teamName").text(params.name);
+                $("#totalCount").text(troopsArr[params.dataIndex].totalCount);
+                $("#sentryCount").text(troopsArr[params.dataIndex].sentryCount);
+                $("#cadresCount").text(troopsArr[params.dataIndex].cadresCount);
+                $("#remainingCount").text(troopsArr[params.dataIndex].remainingCount);
+
+                //改变执勤兵力统计
+                if ($('#toggleTitle>span:first-child').hasClass('active')) {
+                    initialize_BeOnDutyFigure(dutyChart, dutyData[params.dataIndex]);
+                } else {
+                    initialize_BeOnDutyFigure(dutyChart, qDutyData[params.dataIndex]);
+                }
+
+                //改变执勤能力等级统计
+                $("#title_peopleCounting").text(params.name + '执勤人员执勤能力等级情况：');
+                initialize_BeOnDutyFigure(peopleChart, gradeData[params.dataIndex]);
+
+                //改变装备实时统计统计
+                $("#equipTitle").text(params.name + '装备实时统计：');
+                initialize_WeaponsFigure(weaponsChart, equipmentData[params.dataIndex]);
+
+                //改变警卫目标入住情况
+                $("#target").text(targetArr[params.dataIndex]);
+            });
+
+        });
+    </script>
+</body>
+
+</html>

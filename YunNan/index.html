@@ -1,0 +1,568 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>武警云南总队勤务大数据态势</title>
+    <script src="../Scripts/echarts.js"></script>
+    <script src="../Scripts/jquery-3.2.1.min.js"></script>
+    <script src="../Scripts/config.js?v=2"></script>
+    <script src="yunnan.js?v=2"></script>
+    <script src="../Scripts/situationalFigure.js?v=1"></script>
+    <link rel="stylesheet" type="text/css" href="yunnan.css?v=1">
+</head>
+
+<body>
+    <div class="main">
+        <!--标题栏-->
+        <div class="title">
+            <div class="title_son">
+                <img src="../image/icon_badge.png" class="img_title" />
+                <i class="txt_title">武警云南总队勤务大数据态势</i>
+            </div>
+            <div class="title_son">
+                <i class="txt_time" id="locationTime"></i>
+            </div>
+        </div>
+        <div class="line"></div>
+        <!--左边div-->
+        <div class="main_left">
+            <div class="divLeft" id="left1">
+                <div class="verticalBar"></div>
+                <div class="showForces">
+                    <div class="showForcesTitle">
+                        <p>
+                            <i id="teamName">云南总队</i>实时哨卫统计：</p>
+                    </div>
+                    <div class="div_numberOfDuty">
+                        <p>当班哨兵</p>
+                        <p class="count">
+                            <i id="sentryCount"></i> 人</p>
+                    </div>
+                    <div class="line2"></div>
+                    <div class="div_numberOfDuty">
+                        <p>值班干部</p>
+                        <p class="count">
+                            <i id="cadresCount"></i> 人</p>
+                    </div>
+                </div>
+            </div>
+            <div class="divLeft" id="left2">
+                <div class="verticalBar"></div>
+                <div class="showForces">
+                    <div class="showForcesTitle" id="dutyTitle">
+                        <p>当月执勤兵力统计：</p>
+                    </div>
+                    <div class="onDutyFigure" id="onDutyFigure"></div>
+                </div>
+            </div>
+            <div class="divLeft" id="left3">
+                <div class="verticalBar"></div>
+                <div class="showForces">
+                    <div class="showForcesTitle">
+                        <p id="title_peopleCounting">云南总队人数实时统计：</p>
+                    </div>
+                    <div id="peopleCountingFigure"></div>
+                </div>
+            </div>
+            <div class="divLeft" id="left4">
+                <div class="verticalBar"></div>
+                <div class="showForces">
+                    <div class="showForcesTitle">
+                        <p id="equipTitle">云南总队装备实时统计：</p>
+                    </div>
+                    <div class="weaponsFigure" id="weaponsFigure"></div>
+                </div>
+            </div>
+        </div>
+        <!--中间div-->
+        <div class="main_mid">
+            <div id="map"></div>
+        </div>
+        <!--右边div-->
+        <div class="main_right">
+            <!--一图-->
+            <div class="divRight">
+                <div class="data_title">
+                    <img src="../image/icon_callPolice.png" />
+                    <i class="data_title_title" id="title_callPolice"></i>
+                    <i class="data_title_total" id="total_callPolice"></i>
+                </div>
+                <div class="half">
+                    <div class="lt_container">
+                        <div class="littleTitle_div">
+                            <i class="icon_littleTitle"></i>报警总次数前八名
+                        </div>
+                    </div>
+                    <div class="data_content">
+                        <div id="bar1" class="figure"></div>
+                    </div>
+                </div>
+                <div class="half">
+                    <div class="lt_container">
+                        <div class="littleTitle_div">
+                            <i class="icon_littleTitle"></i>各类型报警占比
+                        </div>
+                    </div>
+                    <div id="pie1" class="data_content"></div>
+                </div>
+            </div>
+            <!--三图-->
+            <div class="divRight">
+                <div class="data_title">
+                    <img src="../image/icon_callPolice.png" />
+                    <i class="data_title_title" id="title_examine"></i>
+                    <i class="data_title_total" id="total_examine"></i>
+                </div>
+                <div class="half">
+                    <div class="lt_container">
+                        <div class="littleTitle_div">
+                            <i class="icon_littleTitle"></i>评分前八名
+                        </div>
+                    </div>
+                    <div class="data_content">
+                        <div id="bar3" class="figure"></div>
+                    </div>
+                </div>
+                <div class="half">
+                    <div class="lt_container">
+                        <div class="littleTitle_div">
+                            <i class="icon_littleTitle"></i>
+                            各类型评价占比
+                        </div>
+                    </div>
+                    <div id="pie3" class="data_content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            function p(s) {
+                return s < 10 ? '0' + s : s;
+            };
+            setInterval(function () {
+                var myDate = new Date();
+                var year = myDate.getFullYear();
+                var month = myDate.getMonth() + 1;
+                var date = myDate.getDate();
+                var h = myDate.getHours();
+                var m = myDate.getMinutes();
+                var s = myDate.getSeconds();
+                var now = year + '年' + p(month) + "月" + p(date) + "日 " + p(h) + ':' + p(m) + ":" + p(s);
+                $("#locationTime").text(now);
+            }, 1000);
+            //地图
+            var chart = echarts.init(document.getElementById('map'));
+            var option = null;
+            var nameMap = {
+                '昆明市': '昆明支队',
+                '曲靖市': '曲靖支队',
+                '玉溪市': '玉溪支队',
+                '保山市': '保山支队',
+                '昭通市': '昭通支队',
+                '丽江市': '丽江支队',
+                '普洱市': '普洱支队',
+                '临沧市': '临沧支队',
+                '楚雄彝族自治州': '楚雄支队',
+                '红河哈尼族彝族自治州': '红河支队',
+                '文山壮族苗族自治州': '文山支队',
+                '西双版纳傣族自治州': '西双版纳支队',
+                '大理白族自治州': '大理支队',
+                '德宏傣族景颇族自治州': '德宏支队',
+                '怒江傈僳族自治州': '怒江支队',
+                '迪庆藏族自治州': '迪庆支队'
+            };
+            var forces = [
+                { name: '昆明支队', value: 1500 },
+                { name: '曲靖支队', value: 1300 },
+                { name: '玉溪支队', value: 1100 },
+                { name: '保山支队', value: 1050 },
+                { name: '昭通支队', value: 1000 },
+                { name: '丽江支队', value: 950 },
+                { name: '普洱支队', value: 980 },
+                { name: '临沧支队', value: 990 },
+                { name: '楚雄支队', value: 850 },
+                { name: '红河支队', value: 800 },
+                { name: '文山支队', value: 888 },
+                { name: '西双版纳支队', value: 888 },
+                { name: '大理支队', value: 888 },
+                { name: '德宏支队', value: 888 },
+                { name: '怒江支队', value: 888 },
+                { name: '迪庆支队', value: 888 }
+            ];
+            var markPointData = [
+                {
+                    name: '昆明支队',
+                    coord: [102.712251,25.28] //1控制左右，2控制上下
+                },
+                {
+                    name: '曲靖支队',
+                    coord: [103.797851,25.73]
+                },
+                {
+                    name: '玉溪支队',
+                    coord: [102.543907,24.57]
+                },
+                {
+                    name: '保山支队',
+                    coord: [99.167133,25.34]
+                },
+                {
+                    name: '昭通支队',
+                    coord: [103.717216,27.56]
+                },
+                {
+                    name: '丽江支队',
+                    coord: [100.233026,27.09]
+                },
+                {
+                    name: '普洱支队',
+                    coord: [100.972344,23]
+                },
+                {
+                    name: '临沧支队',
+                    coord: [100.08697,24.11]
+                },
+                {
+                    name: '楚雄支队',
+                    coord: [101.546046,25.43]
+                },
+                {
+                    name: '红河支队',
+                    coord: [103.384182,23.59]
+                },
+                {
+                    name: '西双版纳支队',
+                    coord: [100.797941,22.23]
+                },
+                {
+                    name: '大理支队',
+                    coord: [100.225668,25.8]
+                },
+                {
+                    name: '德宏支队',
+                    coord: [98.578363,24.66]
+                },
+                {
+                    name: '怒江支队',
+                    coord: [98.854304,26.08]
+                },
+                {
+                    name: '迪庆支队',
+                    coord: [99.706463,28.05]
+                },
+                {
+                    name: '文山支队',
+                    coord: [104.24401,24.03]
+                }
+            ];
+            option = {
+                series: [{
+                    type: 'map',
+                    map: '云南',
+                    roam: false,
+                    zoom: 0.85,
+                    top: '-5%',
+                    bottom: 0,
+                    nameMap: nameMap,
+                    label://地图上文字样式
+                        {
+                            normal: {
+                                show: true,
+                                color: '#fff',
+                                formatter: [
+                                    '{a|{b}}',
+                                    '{b|（兵力数：{c}人）}',
+                                ].join('\n'),
+                                rich: {
+                                    a: {
+                                        fontSize: 14,
+                                    },
+                                    b: {
+                                        color: '#fbad40'
+                                    }
+                                },
+                            },
+                            emphasis: {
+                                show: true,
+                                color: '#fff',
+                            }
+                        },
+                    itemStyle://每个区域的样式
+                        {
+                            normal: {
+                                areaColor: '#1f1e23',
+                                borderColo: '#575759',
+                                borderWidth: '3',
+                                //borderType: 'solid',
+                                opacity: 0.5
+                            },
+                            emphasis: {
+                                areaColor: '#0878c4',
+                                opacity: 1,
+
+                            }
+                        },
+                    markPoint: {
+                        symbol: 'image://../image/icon_map.png',
+                        symbolSize: 18,
+                        label: {
+                            normal: {
+                                show: false,
+                            }
+                        },
+                        data: markPointData
+                    },
+                    data: forces
+                }]
+            };
+            if (option && typeof option === "object") {
+                chart.setOption(option, true);
+            };
+
+            //默认显示数据
+            var initialize_dutyData = [
+                ["干部值班人次", 3550],
+                ["战士值班人次", 35500]
+            ];
+            var initialize_peopleData = [11000, 1100, 9900, 1000, 9000, 800, 8500];
+            var initialize_weaponsData = [150, 400, 2000, 13000, 5500];
+
+
+            //各图表数据
+            var sentry = [
+                { name: '云南总队', value: 1300 },
+                { name: '昆明支队', value: 130 },
+                { name: '曲靖支队', value: 130 },
+                { name: '玉溪支队', value: 110 },
+                { name: '保山支队', value: 105 },
+                { name: '昭通支队', value: 100 },
+                { name: '丽江支队', value: 95 },
+                { name: '普洱支队', value: 98 },
+                { name: '临沧支队', value: 99 },
+                { name: '楚雄支队', value: 85 },
+                { name: '红河支队', value: 80 },
+                { name: '文山支队', value: 88 },
+                { name: '西双版纳支队', value: 88 },
+                { name: '大理支队', value: 88 },
+                { name: '德宏支队', value: 88 },
+                { name: '怒江支队', value: 88 },
+                { name: '迪庆支队', value: 88 }
+            ];
+
+            var cadres = [
+                { name: '云南总队', value: 130 },
+                { name: '昆明支队', value: 15 },
+                { name: '曲靖支队', value: 15 },
+                { name: '玉溪支队', value: 20 },
+                { name: '保山支队', value: 15 },
+                { name: '昭通支队', value: 13 },
+                { name: '丽江支队', value: 11 },
+                { name: '普洱支队', value: 12 },
+                { name: '临沧支队', value: 10 },
+                { name: '楚雄支队', value: 9 },
+                { name: '红河支队', value: 9 },
+                { name: '文山支队', value: 9 },
+                { name: '西双版纳支队', value: 9 },
+                { name: '大理支队', value: 9 },
+                { name: '德宏支队', value: 9 },
+                { name: '怒江支队', value: 9 },
+                { name: '迪庆支队', value: 8 }
+            ];
+
+            var dutyData = [
+                [["昆明支队"], ["干部值班人次", 390], ["战士值班人次", 3900]],
+                [["曲靖支队"], ["干部值班人次", 330], ["战士值班人次", 3300]],
+                [["玉溪支队"], ["干部值班人次", 315], ["战士值班人次", 3150]],
+                [["保山支队"], ["干部值班人次", 300], ["战士值班人次", 3000]],
+                [["昭通支队"], ["干部值班人次", 285], ["战士值班人次", 2850]],
+                [["丽江支队"], ["干部值班人次", 294], ["战士值班人次", 2940]],
+                [["普洱支队"], ["干部值班人次", 297], ["战士值班人次", 2970]],
+                [["临沧支队"], ["干部值班人次", 255], ["战士值班人次", 2550]],
+                [["楚雄支队"], ["干部值班人次", 240], ["战士值班人次", 2400]],
+                [["红河支队"], ["干部值班人次", 264], ["战士值班人次", 2640]],
+                [["文山支队"], ["干部值班人次", 264], ["战士值班人次", 2640]],
+                [["西双版纳支队"], ["干部值班人次", 264], ["战士值班人次", 2640]],
+                [["大理支队"], ["干部值班人次", 264], ["战士值班人次", 2640]],
+                [["德宏支队"], ["干部值班人次", 264], ["战士值班人次", 2640]],
+                [["怒江支队"], ["干部值班人次", 264], ["战士值班人次", 2640]],
+                [["迪庆支队"], ["干部值班人次", 249], ["战士值班人次", 2490]]
+            ];
+
+            var peopleData = [
+                [["昆明支队"], [1500, 150, 1350, 140, 1300, 100, 1200]],
+                [["曲靖支队"], [1300, 130, 1170, 120, 1111, 105, 986]],
+                [["玉溪支队"], [1100, 110, 990, 100, 900, 80, 850]],
+                [["保山支队"], [1050, 105, 945, 95, 910, 88, 888]],
+                [["昭通支队"], [1000, 100, 900, 95, 860, 90, 820]],
+                [["丽江支队"], [950, 95, 855, 90, 840, 86, 833]],
+                [["普洱支队"], [980, 98, 822, 80, 800, 75, 790]],
+                [["临沧支队"], [990, 100, 890, 90, 880, 83, 860]],
+                [["楚雄支队"], [850, 100, 750, 93, 1300, 65, 650]],
+                [["红河支队"], [800, 80, 720, 75, 700, 60, 600]],
+                [["文山支队"], [800, 80, 720, 75, 700, 60, 600]],
+                [["西双版纳支队"], [800, 80, 720, 75, 700, 60, 600]],
+                [["大理支队"], [800, 80, 720, 75, 700, 60, 600]],
+                [["德宏支队"], [800, 80, 720, 75, 700, 60, 600]],
+                [["怒江支队"], [800, 80, 720, 75, 700, 60, 600]],
+                [["迪庆支队"], [888, 100, 788, 81, 750, 61, 610]]
+            ];
+
+            var weaponsData = [
+                [["昆明支队"], [15, 40, 200, 1300, 550]],
+                [["曲靖支队"], [20, 50, 150, 1200, 530]],
+                [["玉溪支队"], [14, 60, 130, 1100, 510]],
+                [["保山支队"], [13, 30, 120, 1000, 500]],
+                [["昭通支队"], [12, 25, 100, 900, 450]],
+                [["丽江支队"], [11, 20, 90, 800, 460]],
+                [["普洱支队"], [10, 18, 80, 950, 470]],
+                [["临沧支队"], [12, 32, 70, 850, 430]],
+                [["楚雄支队"], [9, 16, 75, 700, 420]],
+                [["红河支队"], [8, 14, 85, 750, 410]],
+                [["文山支队"], [8, 14, 85, 750, 410]],
+                [["西双版纳支队"], [8, 14, 85, 750, 410]],
+                [["大理支队"], [8, 14, 85, 750, 410]],
+                [["德宏支队"], [8, 14, 85, 750, 410]],
+                [["怒江支队"], [8, 14, 85, 750, 410]],
+                [["迪庆支队"], [8, 16, 95, 700, 406]]
+            ];
+            var barData3 = [
+                [
+                    ["昆明支队", 10],
+                    ["曲靖支队", 20],
+                    ["玉溪支队", 30],
+                    ["保山支队", 40],
+                    ["昭通支队", 50],
+                    ["丽江支队", 60],
+                    ["普洱支队", 70],
+                    ["临沧支队", 80]
+                ],
+                [
+                    ["昆明支队", 10],
+                    ["曲靖支队", 20],
+                    ["玉溪支队", 30],
+                    ["保山支队", 40],
+                    ["昭通支队", 50],
+                    ["丽江支队", 60],
+                    ["普洱支队", 70],
+                    ["临沧支队", 80]
+                ],
+                [
+                    ["昆明支队", 10],
+                    ["曲靖支队", 20],
+                    ["玉溪支队", 30],
+                    ["保山支队", 40],
+                    ["昭通支队", 50],
+                    ["丽江支队", 60],
+                    ["普洱支队", 70],
+                    ["临沧支队", 80]
+                ],
+            ];
+            var pieData3 = [
+                { value: 335, name: '好' },
+                { value: 310, name: '中' },
+                { value: 234, name: '差' }
+            ];
+
+            //获得图表容器
+            var dutyChart = echarts.init(document.getElementById("onDutyFigure"));
+            var peopleChart = echarts.init(document.getElementById("peopleCountingFigure"));
+            var weaponsChart = echarts.init(document.getElementById("weaponsFigure"));
+            var histogram1 = echarts.init(document.getElementById("bar1"));
+            var histogram3 = echarts.init(document.getElementById("bar3"));
+            var pie1 = echarts.init(document.getElementById("pie1"));
+            var pie3 = echarts.init(document.getElementById("pie3"));
+            //图表自适应大小
+            $(window).resize(function () {
+                chart.resize();
+                dutyChart.resize();
+                peopleChart.resize();
+                weaponsChart.resize();
+                histogram1.resize();
+                histogram3.resize();
+                pie1.resize();
+                pie3.resize();
+            });
+
+            //左边图
+            $("#teamName").text("云南总队");
+            $("#sentryCount").text(GetCurrentValue('云南总队', sentry));
+            $("#cadresCount").text(GetCurrentValue('云南总队', cadres));
+            initialize_BeOnDutyFigure(dutyChart, initialize_dutyData);
+            initialize_PeopleCountingFigure(peopleChart, initialize_peopleData);
+            initialize_WeaponsFigure(weaponsChart, initialize_weaponsData);
+            //右边图
+            function p(s) {
+                return s < 10 ? '0' + s : s;
+            };
+            var myDate = new Date();
+            var year = myDate.getFullYear();
+            var month = myDate.getMonth() + 1;
+            var date = myDate.getDate();
+            var nowDate = year + '-' + p(month) + "-" + p(date);
+            document.getElementById("title_callPolice").innerHTML = "哨位报警数据（" + month + "月份）";
+            document.getElementById("title_examine").innerHTML = "各支队哨位评分排名（" + month + "月份）";
+            var ip = webApiUrl;
+            $.getJSON(ip + "Alarm/AlarmLog/Stastics?year=" + year + "&month=" + month,
+                function (data) {
+                    initialize_Histogram1(histogram1, data);
+                    initialize_Pie1(pie1, data);
+                });
+            initialize_Histogram3(histogram3, barData3);
+            initialize_Pie3(pie3, pieData3);
+
+            function GetCurrentValue(currentName, Array) {
+                var value;
+                for (var i = 0; i < Array.length; i++) {
+                    if (currentName == Array[i].name) {
+                        value = Array[i].value;
+                    };
+                };
+                return value;
+            };
+            function GetDutyData(currentName, Array) {
+                var value = [];
+                for (var i = 0; i < Array.length; i++) {
+                    if (currentName == Array[i][0]) {
+                        value.push(Array[i][1]);
+                        value.push(Array[i][2]);
+                    };
+                };
+                return value;
+            };
+            function GetPeopleData(currentName, Array) {
+                var value;
+                for (var i = 0; i < Array.length; i++) {
+                    if (currentName == Array[i][0]) {
+                        value = Array[i][1];
+                    };
+                };
+                return value;
+            };
+
+            chart.on('mouseover', function (params) {
+                //改变实时哨位统计
+                $("#teamName").text(params.name);
+                $("#sentryCount").text(GetCurrentValue(params.name, sentry));
+                $("#cadresCount").text(GetCurrentValue(params.name, cadres));
+                //改变当月执勤兵力统计图
+                initialize_BeOnDutyFigure(dutyChart, GetDutyData(params.name, dutyData));
+                //改变人数实时统计统计图
+                $("#title_peopleCounting").text(params.name + '人数实时统计：');
+                initialize_PeopleCountingFigure(peopleChart, GetPeopleData(params.name, peopleData));
+                //改变装备实时统计统计图
+                $("#equipTitle").text(params.name + '装备实时统计：');
+                initialize_WeaponsFigure(weaponsChart, GetPeopleData(params.name, weaponsData));
+            });
+            chart.on('click', function (params) {
+                if (params.name === "昆明支队") {
+                    window.open("KunMing.html");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

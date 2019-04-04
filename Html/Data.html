@@ -1,0 +1,2161 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>武警河北总队勤务大数据态势</title>
+    <script src="../Scripts/echarts.js"></script>
+    <script src="../Scripts/jquery-3.2.1.min.js"></script>
+    <script src="../Scripts/hebei.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            font-family: 'Microsoft YaHei';
+            font-size: 62.5%;
+        }
+
+        /*背景图片*/
+        .main {
+            height: 100%;
+            width: 100%;
+            background-image: url('../image/background.png');
+            background-position: center;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        /*标题栏*/
+        .title {
+            height: 9%;
+            width: 100%;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .title .title_son {
+            display: flex;
+            align-items: center;
+        }
+
+        .title .img_title {
+            margin-left: 12px;
+            margin-right: 5px;
+            margin-bottom: -5px;
+            height: 5vh;
+        }
+
+        .title .txt_title {
+            font-style: normal;
+            font-size: 4vh;
+            flex-grow: 1;
+            flex-shrink: 0;
+        }
+
+        .title .txt_time {
+            font-style: normal;
+            font-size: 2vh;
+            flex-grow: 1;
+            flex-shrink: 0;
+        }
+
+        .title .img_end {
+            margin-left: 12px;
+            margin-right: 22px;
+            height: 4vh;
+        }
+
+        /*直线*/
+        .line {
+            border-bottom: 1px solid #323232;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        /*左边div*/
+        .main_left {
+            width: 28%;
+            height: 90%;
+            float: left;
+            margin-left: 2%;
+        }
+
+        .main_left .divLeft {
+            width: 100%;
+            margin-top: 4%;
+            background-image: url('../image/bg_data.png');
+            background-position: center;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            float: left;
+            overflow: hidden;
+        }
+
+        .main_left #left1 {
+            height: 20%;
+        }
+
+        .main_left #left2 {
+            height: 20%;
+        }
+
+        .main_left #left3 {
+            height: 25%;
+        }
+
+        .main_left #left4 {
+            height: 25%;
+        }
+
+        .main_left .divLeft .verticalBar {
+            height: 100%;
+            width: 3px;
+            background-color: #0283ff;
+            float: left;
+        }
+
+        .main_left .divLeft .showForces {
+            width: 99%;
+            float: left;
+            height: 100%;
+        }
+
+        .main_left .divLeft .showForces .showForcesTitle {
+            width: 100%;
+            height: 30%;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            font-size: 2.2vh;
+        }
+
+        .main_left .divLeft .showForces .showForcesTitle p {
+            margin-left: 18px;
+        }
+
+        .main_left .divLeft .showForces #teamName {
+            font-style: normal;
+        }
+
+        .main_left .divLeft .showForces .div_numberOfDuty {
+            float: left;
+            width: 49.8%;
+            height: 70%;
+            color: #fff;
+            font-size: 17px;
+            font-size: 1.7rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main_left .divLeft .showForces .div_numberOfDuty .count {
+            margin-top: 10px;
+        }
+
+        .main_left .divLeft .showForces .line2 {
+            width: 1px;
+            height: 60%;
+            background: #323232;
+            text-align: center;
+            float: left;
+        }
+
+        .main_left .divLeft .showForces .div_numberOfDuty .count i {
+            font-style: normal;
+            font-size: 30px;
+            margin-left: 5px;
+        }
+
+        .main_left .divLeft .showForces #peopleCountingFigure {
+            height: 70%;
+        }
+
+        .main_left .divLeft #onDutyFigure {
+            height: 70%;
+            margin-left: 18px;
+        }
+
+
+        .main_left .divLeft .weaponsFigure {
+            height: 70%;
+            margin-left: 18px;
+        }
+
+        /*中间div*/
+        .main_mid {
+            width: 40%;
+            height: 90%;
+            float: left;
+        }
+
+        .main_mid #map {
+            height: 100%;
+            width: 100%;
+            float: left;
+        }
+
+        /*右边大div*/
+        .main_right {
+            width: 28%;
+            height: 90%;
+            float: left;
+            margin-right: 2%;
+        }
+
+        /*右边三块div*/
+        .main_right .divRight {
+            height: 31%;
+            width: 100%;
+            margin-top: 4%;
+            background-image: url('../image/bg_data.png');
+            background-position: center;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            float: right;
+        }
+
+        .main_right .divRight .data_title {
+            height: 20px;
+            width: 100%;
+            float: left;
+            margin-top: 10px;
+            line-height: 20px;
+            font-size: 16px;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .main_right .divRight .data_title img {
+            margin-left: 10px;
+            margin-bottom: -3px;
+        }
+
+        .main_right .divRight .data_title .data_title_title {
+            font-style: normal;
+        }
+
+        .main_right .divRight .data_title .data_title_total {
+            font-style: normal;
+            float: right;
+            margin-right: 15px;
+        }
+
+        .main_right .divRight .half {
+            float: left;
+            width: 50%;
+            height: 90%;
+        }
+
+        .main_right .divRight .half .lt_container {
+            height: 20%;
+            float: left;
+        }
+
+        .main_right .divRight .half .lt_container .littleTitle_div {
+            height: 100%;
+            font-size: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+
+        .main_right .divRight .half .lt_container .littleTitle_div .icon_littleTitle {
+            float: left;
+            height: 15px;
+            width: 2px;
+            margin-bottom: -3px;
+            background: #0283ff;
+            margin-left: 10px;
+            margin-right: 5px;
+        }
+
+        .main_right .divRight .half .data_content {
+            height: 80%;
+            width: 90%;
+            margin-left: 17px;
+            float: left;
+        }
+
+        .main_right .divRight .half .data_content .figure {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <!--标题栏-->
+        <div class="title">
+            <div class="title_son">
+                <img src="../image/icon_badge.png" class="img_title" />
+                <i class="txt_title">武警河北总队勤务大数据态势</i>
+            </div>
+            <div class="title_son">
+                <i class="txt_time" id="locationTime"></i>
+                <img src="../image/icon_close.png" class="img_end" id="clockSwitch" />
+            </div>
+        </div>
+        <div class="line"></div>
+        <!--左边div-->
+        <div class="main_left">
+            <div class="divLeft" id="left1">
+                <div class="verticalBar"></div>
+                <div class="showForces">
+                    <div class="showForcesTitle">
+                        <p><i id="teamName">河北总队</i>实时哨卫统计：</p>
+                    </div>
+                    <div class="div_numberOfDuty">
+                        <p>当班哨兵</p>
+                        <p class="count"><i id="sentryCount"></i> 人</p>
+                    </div>
+                    <div class="line2"></div>
+                    <div class="div_numberOfDuty">
+                        <p>值班干部</p>
+                        <p class="count"><i id="cadresCount"></i> 人</p>
+                    </div>
+                </div>
+            </div>
+            <div class="divLeft" id="left2">
+                <div class="verticalBar"></div>
+                <div class="showForces">
+                    <div class="showForcesTitle" id="dutyTitle">
+                        <p>当月执勤兵力统计：</p>
+                    </div>
+                    <div class="onDutyFigure" id="onDutyFigure"></div>
+                </div>
+            </div>
+            <div class="divLeft" id="left3">
+                <div class="verticalBar"></div>
+                <div class="showForces">
+                    <div class="showForcesTitle">
+                        <p id="title_peopleCounting">河北总队人数实时统计：</p>
+                    </div>
+                    <div id="peopleCountingFigure"></div>
+                </div>
+            </div>
+            <div class="divLeft" id="left4">
+                <div class="verticalBar"></div>
+                <div class="showForces">
+                    <div class="showForcesTitle">
+                        <p id="equipTitle">河北总队装备实时统计：</p>
+                    </div>
+                    <div class="weaponsFigure" id="weaponsFigure"></div>
+                </div>
+            </div>
+        </div>
+        <!--中间div-->
+        <div class="main_mid">
+            <div id="map"></div>
+        </div>
+        <!--右边div-->
+        <div class="main_right">
+            <!--一图-->
+            <div class="divRight">
+                <div class="data_title">
+                    <img src="../image/icon_callPolice.png" />
+                    <i class="data_title_title" id="title_callPolice"></i>
+                    <i class="data_title_total" id="total_callPolice"></i>
+                </div>
+                <div class="half">
+                    <div class="lt_container">
+                        <div class="littleTitle_div">
+                            <i class="icon_littleTitle"></i>各支队报警次数排名
+                        </div>
+                    </div>
+                    <div class="data_content">
+                        <div id="bar1" class="figure"></div>
+                    </div>
+                </div>
+                <div class="half">
+                    <div class="lt_container">
+                        <div class="littleTitle_div">
+                            <i class="icon_littleTitle"></i>各类型报警占比
+                        </div>
+                    </div>
+                    <div id="pie1" class="data_content"></div>
+                </div>
+            </div>
+            <!--二图-->
+            <div class="divRight">
+                <div class="data_title">
+                    <img src="../image/icon_callPolice.png" />
+                    <i class="data_title_title" id="title_bullet"></i>
+                    <i class="data_title_total" id="total_bullet"></i>
+                </div>
+                <div class="half">
+                    <div class="lt_container">
+                        <div class="littleTitle_div">
+                            <i class="icon_littleTitle"></i>各支队枪弹异常排名
+                        </div>
+                    </div>
+                    <div class="data_content">
+                        <div id="bar2" class="figure"></div>
+                    </div>
+                </div>
+                <div class="half">
+                    <div class="lt_container">
+                        <div class="littleTitle_div">
+                            <i class="icon_littleTitle"></i>
+                            各类型异常占比
+                        </div>
+                    </div>
+                    <div id="pie2" class="data_content"></div>
+                </div>
+            </div>
+            <!--三图-->
+            <div class="divRight">
+                <div class="data_title">
+                    <img src="../image/icon_callPolice.png" />
+                    <i class="data_title_title" id="title_examine"></i>
+                    <i class="data_title_total" id="total_examine"></i>
+                </div>
+                <div class="half">
+                    <div class="lt_container">
+                        <div class="littleTitle_div">
+                            <i class="icon_littleTitle"></i>各支队评分排行榜
+                        </div>
+                    </div>
+                    <div class="data_content">
+                        <div id="bar3" class="figure"></div>
+                    </div>
+                </div>
+                <div class="half">
+                    <div class="lt_container">
+                        <div class="littleTitle_div">
+                            <i class="icon_littleTitle"></i>
+                            各类型评价占比
+                        </div>
+                    </div>
+                    <div id="pie3" class="data_content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            function p(s) {
+                return s < 10 ? '0' + s : s;
+            };
+
+            setInterval(function () {
+                var myDate = new Date();
+                var year = myDate.getFullYear();
+                var month = myDate.getMonth() + 1;
+                var date = myDate.getDate();
+                var h = myDate.getHours();
+                var m = myDate.getMinutes();
+                var s = myDate.getSeconds();
+                var now = year + '年' + p(month) + "月" + p(date) + "日 " + p(h) + ':' + p(m) + ":" + p(s);
+                $("#locationTime").text(now);
+            }, 1000);
+
+            var isClose = true;
+            $("#clockSwitch").click(function () {
+                if (isClose) {
+                    $("#locationTime").hide();
+                    isClose = false;
+                } else {
+                    $("#locationTime").show();
+                    isClose = true;
+                }
+            });
+
+        });
+    </script>
+    <!--地图-->
+    <script type="text/javascript">
+        $(function () {
+            var chart = echarts.init(document.getElementById('map'));
+            var option = null;
+            //地图兵力数
+            var forces = [{
+                    name: '第一支队',
+                    value: 1500
+                },
+                {
+                    name: '执勤支队',
+                    value: 1300
+                },
+                {
+                    name: '石家庄支队',
+                    value: 1100
+                },
+                {
+                    name: '唐山支队',
+                    value: 1050
+                },
+                {
+                    name: '秦皇岛支队',
+                    value: 1000
+                },
+                {
+                    name: '邯郸支队',
+                    value: 950
+                },
+                {
+                    name: '邢台支队',
+                    value: 980
+                },
+                {
+                    name: '保定支队',
+                    value: 990
+                },
+                {
+                    name: '张家口支队',
+                    value: 850
+                },
+                {
+                    name: '承德支队',
+                    value: 800
+                },
+                {
+                    name: '沧州支队',
+                    value: 888
+                },
+                {
+                    name: '廊坊支队',
+                    value: 832
+                },
+                {
+                    name: '衡水支队',
+                    value: 811
+                }
+            ];
+
+            option = {
+                series: [{
+                    type: 'map',
+                    map: '河北',
+                    roam: false,
+                    center: [116.704441, 39.523927],
+                    zoom: 0.9,
+                    top: '-5%',
+                    bottom: 0,
+                    nameMap: {
+                        '承德市': '承德支队',
+                        '秦皇岛市': '秦皇岛支队',
+                        '唐山市': '唐山支队',
+                        '张家口市': '张家口支队',
+                        '廊坊市': '廊坊支队',
+                        '保定市': '保定支队',
+                        '沧州市': '沧州支队',
+                        '衡水市': '衡水支队',
+                        '石家庄市': '石家庄支队',
+                        '邢台市': '邢台支队',
+                        '邯郸市': '邯郸支队'
+                    },
+                    label: //地图上文字样式
+                    {
+                        normal: {
+                            show: true,
+                            color: '#fff',
+                            formatter: [
+                                '{a|{b}}',
+                                '{b|（兵力数：{c}人）}',
+                            ].join('\n'),
+                            rich: {
+                                a: {
+                                    fontSize: 14,
+                                },
+                                b: {
+                                    color: '#fbad40'
+                                }
+                            },
+                        },
+                        emphasis: {
+                            show: true,
+                            color: '#fff',
+                        }
+                    },
+                    itemStyle: //每个区域的样式
+                    {
+                        normal: {
+                            areaColor: '#1f1e23',
+                            borderColo: '#fff',
+                            borderWidth: '3',
+                            borderType: 'solid',
+                            opacity: 0.65
+                        },
+                        emphasis: {
+                            areaColor: '#0878c4',
+                            opacity: 1,
+
+                        }
+                    },
+                    markPoint: //图标
+                    {
+                        symbol: 'image://../image/icon_map.png',
+                        symbolSize: 14,
+                        label: {
+                            normal: {
+                                show: false,
+                            }
+                        },
+                        data: [{
+                                name: '唐山支队',
+                                coord: [118.175393, 39.87] //1控制左右，2控制上下
+                            },
+                            {
+                                name: '秦皇岛支队',
+                                coord: [119.4, 40.18]
+                            },
+                            {
+                                name: '邯郸支队',
+                                coord: [113.9, 36.7]
+                            },
+                            {
+                                name: '邢台支队',
+                                coord: [114.508851, 37.26]
+                            },
+                            {
+                                name: '保定支队',
+                                coord: [115.482331, 39.1]
+                            },
+                            {
+                                name: '张家口支队',
+                                coord: [114.884091, 41.1]
+                            },
+                            {
+                                name: '承德支队',
+                                coord: [117.939152, 41.2]
+                            },
+                            {
+                                name: '沧州支队',
+                                coord: [116.857461, 38.52]
+                            },
+                            {
+                                name: '廊坊支队',
+                                coord: [116.704441, 39.3]
+                            },
+                            {
+                                name: '衡水支队',
+                                coord: [115.665993, 38]
+                            },
+                            {
+                                name: '石家庄支队',
+                                coord: [114.78, 38.29]
+                            },
+                            {
+                                name: '第一支队',
+                                coord: [114.3, 38.5]
+                            },
+                            {
+                                name: '执勤支队',
+                                coord: [114.6, 37.8]
+                            }
+                        ]
+                    },
+                    data: forces
+                }]
+            };
+
+            if (option && typeof option === "object") {
+                chart.setOption(option, true);
+                window.onresize = chart.resize;
+            };
+            //初始化数据
+            var sentry = [{
+                    name: '河北总队',
+                    value: 1500
+                },
+                {
+                    name: '第一支队',
+                    value: 150
+                },
+                {
+                    name: '执勤支队',
+                    value: 130
+                },
+                {
+                    name: '石家庄支队',
+                    value: 110
+                },
+                {
+                    name: '唐山支队',
+                    value: 105
+                },
+                {
+                    name: '秦皇岛支队',
+                    value: 100
+                },
+                {
+                    name: '邯郸支队',
+                    value: 95
+                },
+                {
+                    name: '邢台支队',
+                    value: 98
+                },
+                {
+                    name: '保定支队',
+                    value: 99
+                },
+                {
+                    name: '张家口支队',
+                    value: 85
+                },
+                {
+                    name: '承德支队',
+                    value: 80
+                },
+                {
+                    name: '沧州支队',
+                    value: 88
+                },
+                {
+                    name: '廊坊支队',
+                    value: 83
+                },
+                {
+                    name: '衡水支队',
+                    value: 81
+                }
+            ];
+            var cadres = [{
+                    name: '河北总队',
+                    value: 150
+                },
+                {
+                    name: '第一支队',
+                    value: 15
+                },
+                {
+                    name: '执勤支队',
+                    value: 13
+                },
+                {
+                    name: '石家庄支队',
+                    value: 11
+                },
+                {
+                    name: '唐山支队',
+                    value: 12
+                },
+                {
+                    name: '秦皇岛支队',
+                    value: 10
+                },
+                {
+                    name: '邯郸支队',
+                    value: 9
+                },
+                {
+                    name: '邢台支队',
+                    value: 9
+                },
+                {
+                    name: '保定支队',
+                    value: 9
+                },
+                {
+                    name: '张家口支队',
+                    value: 8
+                },
+                {
+                    name: '承德支队',
+                    value: 8
+                },
+                {
+                    name: '沧州支队',
+                    value: 8
+                },
+                {
+                    name: '廊坊支队',
+                    value: 8
+                },
+                {
+                    name: '衡水支队',
+                    value: 8
+                }
+            ];
+            var initialize_dutyData = [
+                ["值班干部", 3550],
+                ["执勤人员", 35500]
+            ];
+            var initialize_peopleData = [11000, 1100, 9900, 1000, 9000, 800, 8500];
+            var initialize_weaponsData = [150, 400, 2000, 13000, 5500];
+            //各支队当月执勤兵力统计数据
+            var dutyData = [
+                [
+                    ["第一支队"],
+                    ["值班干部", 450],
+                    ["执勤人员", 4500]
+                ],
+                [
+                    ["执勤支队"],
+                    ["值班干部", 390],
+                    ["执勤人员", 3900]
+                ],
+                [
+                    ["石家庄支队"],
+                    ["值班干部", 330],
+                    ["执勤人员", 3300]
+                ],
+                [
+                    ["唐山支队"],
+                    ["值班干部", 315],
+                    ["执勤人员", 3150]
+                ],
+                [
+                    ["秦皇岛支队"],
+                    ["值班干部", 300],
+                    ["执勤人员", 3000]
+                ],
+                [
+                    ["邯郸支队"],
+                    ["值班干部", 285],
+                    ["执勤人员", 2850]
+                ],
+                [
+                    ["邢台支队"],
+                    ["值班干部", 294],
+                    ["执勤人员", 2940]
+                ],
+                [
+                    ["保定支队"],
+                    ["值班干部", 297],
+                    ["执勤人员", 2970]
+                ],
+                [
+                    ["张家口支队"],
+                    ["值班干部", 255],
+                    ["执勤人员", 2550]
+                ],
+                [
+                    ["承德支队"],
+                    ["值班干部", 240],
+                    ["执勤人员", 2400]
+                ],
+                [
+                    ["沧州支队"],
+                    ["值班干部", 264],
+                    ["执勤人员", 2640]
+                ],
+                [
+                    ["廊坊支队"],
+                    ["值班干部", 249],
+                    ["执勤人员", 2490]
+                ],
+                [
+                    ["衡水支队"],
+                    ["值班干部", 243],
+                    ["执勤人员", 2430]
+                ],
+            ];
+            //各支队实时人数数据
+            var peopleData = [
+                [
+                    ["第一支队"],
+                    [1500, 150, 1350, 140, 1300, 100, 1200]
+                ],
+                [
+                    ["执勤支队"],
+                    [1300, 130, 1170, 120, 1111, 105, 986]
+                ],
+                [
+                    ["石家庄支队"],
+                    [1100, 110, 990, 100, 900, 80, 850]
+                ],
+                [
+                    ["唐山支队"],
+                    [1050, 105, 945, 95, 910, 88, 888]
+                ],
+                [
+                    ["秦皇岛支队"],
+                    [1000, 100, 900, 95, 860, 90, 820]
+                ],
+                [
+                    ["邯郸支队"],
+                    [950, 95, 855, 90, 840, 86, 833]
+                ],
+                [
+                    ["邢台支队"],
+                    [980, 98, 822, 80, 800, 75, 790]
+                ],
+                [
+                    ["保定支队"],
+                    [990, 100, 890, 90, 880, 83, 860]
+                ],
+                [
+                    ["张家口支队"],
+                    [850, 100, 750, 93, 1300, 65, 650]
+                ],
+                [
+                    ["承德支队"],
+                    [800, 80, 720, 75, 700, 60, 600]
+                ],
+                [
+                    ["沧州支队"],
+                    [888, 100, 788, 81, 750, 61, 610]
+                ],
+                [
+                    ["廊坊支队"],
+                    [832, 90, 742, 80, 730, 62, 620]
+                ],
+                [
+                    ["衡水支队"],
+                    [811, 100, 711, 96, 710, 63, 630]
+                ]
+            ];
+            //各支队实时装备数据
+            var weaponsData = [
+                [
+                    ["第一支队"],
+                    [15, 40, 200, 1300, 550]
+                ],
+                [
+                    ["执勤支队"],
+                    [20, 50, 150, 1200, 530]
+                ],
+                [
+                    ["石家庄支队"],
+                    [14, 60, 130, 1100, 510]
+                ],
+                [
+                    ["唐山支队"],
+                    [13, 30, 120, 1000, 500]
+                ],
+                [
+                    ["秦皇岛支队"],
+                    [12, 25, 100, 900, 450]
+                ],
+                [
+                    ["邯郸支队"],
+                    [11, 20, 90, 800, 460]
+                ],
+                [
+                    ["邢台支队"],
+                    [10, 18, 80, 950, 470]
+                ],
+                [
+                    ["保定支队"],
+                    [12, 32, 70, 850, 430]
+                ],
+                [
+                    ["张家口支队"],
+                    [9, 16, 75, 700, 420]
+                ],
+                [
+                    ["承德支队"],
+                    [8, 14, 85, 750, 410]
+                ],
+                [
+                    ["沧州支队"],
+                    [8, 16, 95, 700, 406]
+                ],
+                [
+                    ["廊坊支队"],
+                    [13, 19, 78, 780, 408]
+                ],
+                [
+                    ["衡水支队"],
+                    [9, 29, 86, 650, 409]
+                ]
+            ];
+
+            //获得图表容器
+            var dutyChart = echarts.init(document.getElementById("onDutyFigure"));
+            var peopleChart = echarts.init(document.getElementById("peopleCountingFigure"));
+            var weaponsChart = echarts.init(document.getElementById("weaponsFigure"));
+            var histogram1 = echarts.init(document.getElementById("bar1"));
+            var histogram2 = echarts.init(document.getElementById("bar2"));
+            var histogram3 = echarts.init(document.getElementById("bar3"));
+            var pie1 = echarts.init(document.getElementById("pie1"));
+            var pie2 = echarts.init(document.getElementById("pie2"));
+            var pie3 = echarts.init(document.getElementById("pie3"));
+            //图表自适应大小
+            $(window).resize(function () {
+                chart.resize();
+                dutyChart.resize();
+                peopleChart.resize();
+                weaponsChart.resize();
+                histogram1.resize();
+                histogram2.resize();
+                histogram3.resize();
+                pie1.resize();
+                pie2.resize();
+                pie3.resize();
+            });
+            //左边图
+            initialize_BeOnDutyFigure(dutyChart, initialize_dutyData);
+            initialize_PeopleCountingFigure(peopleChart, initialize_peopleData);
+            initialize_WeaponsFigure(weaponsChart, initialize_weaponsData);
+            //右边图
+            initialize_Histogram1(histogram1);
+            initialize_Histogram2(histogram2);
+            initialize_Histogram3(histogram3);
+            initialize_Pie1(pie1);
+            initialize_Pie2(pie2);
+            initialize_Pie3(pie3);
+            //默认显示的数据
+            $("#teamName").text("河北总队");
+            $("#sentryCount").text(GetCurrentValue('河北总队', sentry));
+            $("#cadresCount").text(GetCurrentValue('河北总队', cadres));
+
+            function GetCurrentValue(currentName, Array) {
+                var value;
+                for (var i = 0; i < Array.length; i++) {
+                    if (currentName == Array[i].name) {
+                        value = Array[i].value;
+                    };
+                };
+                return value;
+            };
+
+            function GetDutyData(currentName, Array) {
+                var value = [];
+                for (var i = 0; i < Array.length; i++) {
+                    if (currentName == Array[i][0]) {
+                        value.push(Array[i][1]);
+                        value.push(Array[i][2]);
+                    };
+                };
+                return value;
+            };
+
+            function GetPeopleData(currentName, Array) {
+                var value;
+                for (var i = 0; i < Array.length; i++) {
+                    if (currentName == Array[i][0]) {
+                        value = Array[i][1];
+                    };
+                };
+                return value;
+            };
+
+            chart.on('mouseover', function (params) {
+                //改变实时哨位统计
+                $("#teamName").text(params.name);
+                $("#sentryCount").text(GetCurrentValue(params.name, sentry));
+                $("#cadresCount").text(GetCurrentValue(params.name, cadres));
+                //改变当月执勤兵力统计图
+                initialize_BeOnDutyFigure(dutyChart, GetDutyData(params.name, dutyData));
+                //改变人数实时统计统计图
+                $("#title_peopleCounting").text(params.name + '人数实时统计：');
+                initialize_PeopleCountingFigure(peopleChart, GetPeopleData(params.name, peopleData));
+                //改变装备实时统计统计图
+                $("#equipTitle").text(params.name + '装备实时统计：');
+                initialize_WeaponsFigure(weaponsChart, GetPeopleData(params.name, weaponsData));
+            });
+
+            //<!--当月执勤统计图-->
+            function initialize_BeOnDutyFigure(chart, currentData) {
+                var app = {};
+                option = null;
+                //获得数组名
+                function GetName(arry) {
+                    var name = [];
+                    for (var i = 0; i < arry.length; i++) {
+                        name.push(arry[i][0]);
+                    };
+                    return name;
+                };
+                ////获得数组值
+                function GetValue(arry) {
+                    var value = [];
+                    for (var i = 0; i < arry.length; i++) {
+                        value.push(arry[i][1]);
+                    };
+                    return value;
+                };
+                var teamName = GetName(currentData);
+                var v1 = GetValue(currentData);
+
+                option = {
+                    grid: //表格间距
+                    {
+                        top: '20%',
+                        left: 2,
+                        right: '30%',
+                        bottom: '20%',
+                        borderColor: '#fff',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'value',
+                        show: false
+                    },
+                    yAxis: {
+                        offset: 50,
+                        boundaryGap: false,
+                        type: 'category',
+                        data: teamName,
+                        axisLine: {
+                            lineStyle: {
+                                opacity: 0
+                            }
+                        },
+                        axisTick: false,
+                        axisLabel: {
+                            show: true,
+                            interval: 0,
+                            color: '#fff',
+                            fontFamily: 'Microsoft YaHei',
+                            align: 'left'
+                        },
+                    },
+                    series: [{
+                        type: 'bar',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'right',
+                                color: '#fff'
+                            }
+                        },
+                        barMaxWidth: 30,
+                        data: [{
+                                value: v1[0],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#d94133'
+                                    }
+                                }
+                            },
+                            {
+                                value: v1[1],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#1985f4'
+                                    }
+                                }
+                            }
+                        ]
+                    }, ]
+                };;
+                if (option && typeof option === "object") {
+                    chart.setOption(option, true);
+                }
+            };
+
+            // <!--人数实时统计图-->
+            function initialize_PeopleCountingFigure(chart, currentData) {
+                var app = {};
+                option = null;
+                var valueArray = currentData;
+                option = {
+                    grid: {
+                        left: '8%',
+                        right: '8%',
+                        bottom: '20%',
+                        top: '15%',
+                        containLabel: false
+                    },
+                    xAxis: [{
+                        type: 'category',
+                        data: ['总编制数', '干部编制数', '战士编制数', '干部实力', '战士实力', '在位干部', '在位战士'],
+                        boundaryGap: false,
+                        axisTick: {
+                            show: false
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                opacity: 1
+                            }
+                        },
+                        axisLabel: {
+                            show: true,
+                            interval: 0,
+                            color: '#fff',
+                            fontSize: 11,
+                            fontFamily: 'Microsoft YaHei',
+                            showMinLabel: true,
+                            showMaxLabel: true,
+                        },
+                    }],
+                    yAxis: [{
+                        type: 'value',
+                        show: false
+                    }],
+                    series: [{
+                        type: 'bar',
+                        barMaxWidth: 30,
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'top',
+                                color: '#fff',
+                                fontFamily: 'Microsoft YaHei',
+                            }
+                        },
+                        data: [{
+                                value: valueArray[0],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#da4133'
+                                    }
+                                }
+                            },
+                            {
+                                value: valueArray[1],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#0284ff'
+                                    }
+                                }
+                            },
+                            {
+                                value: valueArray[2],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#fbad40'
+                                    }
+                                }
+                            },
+                            {
+                                value: valueArray[3],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#6fee1e'
+                                    }
+                                }
+                            },
+                            {
+                                value: valueArray[4],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#41c4bc'
+                                    }
+                                }
+                            },
+                            {
+                                value: valueArray[5],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#3299ff'
+                                    }
+                                }
+                            },
+                            {
+                                value: valueArray[6],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#9a3adc'
+                                    }
+                                }
+                            },
+                        ]
+                    }]
+                };;
+                if (option && typeof option === "object") {
+                    chart.setOption(option, true);
+                };
+            };
+
+            //   <!--装备实时统计图-->
+            function initialize_WeaponsFigure(chart, currentData) {
+                var app = {};
+                option = null;
+                option = {
+                    grid: //表格间距
+                    {
+                        top: '5%',
+                        left: 0,
+                        right: '20%',
+                        bottom: '10%',
+                        borderColor: '#fff',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'value',
+                        show: false
+                    },
+                    yAxis: {
+                        offset: 70,
+                        boundaryGap: false,
+                        type: 'category',
+                        data: ['维修枪支总数', '执勤用弹总数', '执勤枪支总数', '弹药总数', '枪支总数'],
+                        axisLine: {
+                            lineStyle: {
+                                opacity: 0
+                            }
+                        },
+                        axisTick: false,
+                        axisLabel: {
+                            show: true,
+                            interval: 0,
+                            color: '#fff',
+                            align: 'left',
+                            fontFamily: 'Microsoft YaHei',
+                        },
+                    },
+                    series: [{
+                        type: 'bar',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'right',
+                                color: '#fff'
+                            }
+                        },
+                        //barMinHeight: 20,
+                        barMaxWidth: 20,
+                        data: [{
+                                value: currentData[0],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#bbf2f4'
+                                    }
+                                }
+                            },
+                            {
+                                value: currentData[1],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#71ed10'
+                                    }
+                                }
+                            },
+                            {
+                                value: currentData[2],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#fbad40'
+                                    }
+                                }
+                            },
+                            {
+                                value: currentData[3],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#d94133'
+                                    }
+                                }
+                            },
+                            {
+                                value: currentData[4],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#1985f4'
+                                    }
+                                }
+                            }
+                        ]
+                    }, ]
+                };;
+                if (option && typeof option === "object") {
+                    chart.setOption(option, true);
+                };
+            };
+
+            //<!--堆叠柱状图1-->
+            function initialize_Histogram1(chart) {
+                var app = {};
+                option = null;
+
+                //模拟数据
+                var barName = ['暴狱', '灾害', '逃跑', '劫持', '袭击', '突发', '周界'];
+                var data1 = [
+                    ["廊坊支市队", 10],
+                    ["保定市支队", 20],
+                    ["承德市支队", 30],
+                    ["秦皇岛市支队", 40],
+                    ["唐山市支队", 50],
+                    ["执勤支队", 60],
+                    ["第一支队", 70],
+                    ["石家庄市支队", 80],
+                ];
+                var data2 = [
+                    ["廊坊支市队", 10],
+                    ["保定市支队", 20],
+                    ["承德市支队", 30],
+                    ["秦皇岛市支队", 40],
+                    ["唐山市支队", 50],
+                    ["执勤支队", 60],
+                    ["第一支队", 70],
+                    ["石家庄支队", 80],
+                ];
+                var data3 = [
+                    ["廊坊支市队", 10],
+                    ["保定市支队", 20],
+                    ["承德市支队", 30],
+                    ["秦皇岛市支队", 40],
+                    ["唐山市支队", 50],
+                    ["执勤支队", 60],
+                    ["第一支队", 70],
+                    ["石家庄支队", 80],
+                ];
+                var data4 = [
+                    ["廊坊支市队", 10],
+                    ["保定市支队", 20],
+                    ["承德市支队", 30],
+                    ["秦皇岛市支队", 40],
+                    ["唐山市支队", 50],
+                    ["执勤支队", 60],
+                    ["第一支队", 70],
+                    ["石家庄支队", 80],
+                ];
+                var data5 = [
+                    ["廊坊支市队", 10],
+                    ["保定市支队", 20],
+                    ["承德市支队", 30],
+                    ["秦皇岛市支队", 40],
+                    ["唐山市支队", 50],
+                    ["执勤支队", 60],
+                    ["第一支队", 70],
+                    ["石家庄支队", 80],
+                ];
+                var data6 = [
+                    ["廊坊支市队", 10],
+                    ["保定市支队", 20],
+                    ["承德市支队", 30],
+                    ["秦皇岛市支队", 40],
+                    ["唐山市支队", 50],
+                    ["执勤支队", 60],
+                    ["第一支队", 70],
+                    ["石家庄支队", 80],
+                ];
+                var data7 = [
+                    ["廊坊支市队", 10],
+                    ["保定市支队", 20],
+                    ["承德市支队", 30],
+                    ["秦皇岛市支队", 40],
+                    ["唐山市支队", 50],
+                    ["执勤支队", 60],
+                    ["第一支队", 70],
+                    ["石家庄支队", 80],
+                ];
+                //获得各支队的报警次数总和
+                function GetSortArry(data1, data2, data3, data4, data5, data6, data7) {
+                    var res = [];
+                    for (var i = 0; i < data1.length; i++) {
+                        res.push([
+                            data1[i][0],
+                            data1[i][1] + data2[i][1] + data3[i][1] + data4[i][1] + data5[i][1] + data6[
+                                i][1] + data7[i][1]
+                        ]);
+                    }
+                    return res;
+                };
+
+                function GetName(arry) {
+                    var name = [];
+                    for (var i = 0; i < arry.length; i++) {
+                        name.push(arry[i][0]);
+                    };
+                    return name;
+                };
+
+                function GetValue(arry) {
+                    var value = [];
+                    for (var i = 0; i < arry.length; i++) {
+                        value.push(arry[i][1]);
+                    };
+                    return value;
+                };
+                var sortArry = GetSortArry(data1, data2, data3, data4, data5, data6, data7);
+                sortArry.sort(function (a, b) {
+                    return a[1] - b[1]
+                });
+
+                var teamName = GetName(data1);
+                var v1 = GetValue(data1);
+                var v2 = GetValue(data2);
+                var v3 = GetValue(data3);
+                var v4 = GetValue(data4);
+                var v5 = GetValue(data5);
+                var v6 = GetValue(data6);
+                var v7 = GetValue(data7);
+                var totalValue = GetValue(sortArry);
+                var total = 0;
+                for (var i = 0; i < totalValue.length; i++) {
+                    total += totalValue[i];
+                }
+                document.getElementById("total_callPolice").innerHTML = "总数：" + total;
+                document.getElementById("title_callPolice").innerHTML = "各支队异常报警总数排名（12月份）";
+
+                option = {
+                    color: ['#1985f4', '#0fadd0', '#d94133', '#fbad40', '#71ed1d', '#bbf2f4',
+                    '#9a3adc'], //设置每个图例的颜色
+                    tooltip: //提示
+                    {
+                        trigger: 'axis',
+                        axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                            type: 'shadow'
+                        },
+                        confine: true
+                    },
+                    legend: //图例
+                    {
+                        show: false,
+                        data: barName
+                    },
+                    grid: //表格间距
+                    {
+                        top: '5%',
+                        left: 0,
+                        right: 20,
+                        bottom: '0%',
+                        borderColor: '#fff',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'value',
+                        show: false
+                    },
+                    yAxis: {
+                        boundaryGap: false,
+                        type: 'category',
+                        data: teamName,
+                        axisLine: {
+                            lineStyle: {
+                                opacity: 0
+                            }
+                        },
+                        offset: 70,
+                        axisTick: false,
+                        axisLabel: {
+                            show: true,
+                            interval: 0,
+                            color: '#fff',
+                            align: 'left',
+                            fontFamily: 'Microsoft YaHei',
+                            interval: 0,
+                        },
+                    },
+                    series: [{
+                            name: barName[0],
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data: v1,
+                        },
+                        {
+                            name: barName[1],
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data: v2,
+                        },
+                        {
+                            name: barName[2],
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data: v3,
+                        },
+                        {
+                            name: barName[3],
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data: v4,
+                        },
+                        {
+                            name: barName[4],
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data: v5,
+                        },
+                        {
+                            name: barName[5],
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data: v6,
+                        },
+                        { //第6各+总数
+                            name: barName[6],
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'right',
+                                    color: '#fff',
+                                    fontSize: 10,
+                                    formatter: function (params) {
+                                        return totalValue[params.dataIndex]
+                                    }
+                                }
+                            },
+                            data: v7,
+                        }
+                    ]
+                };;
+                if (option && typeof option === "object") {
+                    chart.setOption(option, true);
+                };
+            };
+
+            // <!--堆叠柱状图2-->
+            function initialize_Histogram2(chart) {
+                var app = {};
+                option = null;
+                //模拟数据
+                var barName = ['非法打开', '离岗报警', '巡逻偏移', '信号异常'];
+                var data1 = [
+                    ["张家口支市队", 10],
+                    ["承德市支队", 20],
+                    ["秦皇岛市支队", 30],
+                    ["唐山市支队", 40],
+                    ["廊坊市支队", 50],
+                    ["保定市支队", 60],
+                    ["沧州市支队", 70],
+                    ["石家庄支市队", 80]
+                ];
+                var data2 = [
+                    ["张家口支市队", 10],
+                    ["承德市支队", 20],
+                    ["秦皇岛市支队", 30],
+                    ["唐山市支队", 40],
+                    ["廊坊市支队", 50],
+                    ["保定市支队", 60],
+                    ["沧州市支队", 70],
+                    ["石家庄支市队", 80]
+                ];
+                var data3 = [
+                    ["张家口支市队", 10],
+                    ["承德市支队", 20],
+                    ["秦皇岛市支队", 30],
+                    ["唐山市支队", 40],
+                    ["廊坊市支队", 50],
+                    ["保定市支队", 60],
+                    ["沧州市支队", 70],
+                    ["石家庄支市队", 80]
+                ];
+                var data4 = [
+                    ["张家口支市队", 10],
+                    ["承德市支队", 20],
+                    ["秦皇岛市支队", 30],
+                    ["唐山市支队", 40],
+                    ["廊坊市支队", 50],
+                    ["保定市支队", 60],
+                    ["沧州市支队", 70],
+                    ["石家庄支市队", 80]
+                ];
+                //获得各支队的报警次数总和
+                function GetSortArry(data1, data2, data3, data4) {
+                    var res = [];
+                    for (var i = 0; i < data1.length; i++) {
+                        res.push([
+                            data1[i][0],
+                            data1[i][1] + data2[i][1] + data3[i][1] + data4[i][1]
+                        ]);
+                    }
+                    return res;
+                };
+                //获得数组名
+                function GetName(arry) {
+                    var name = [];
+                    for (var i = 0; i < arry.length; i++) {
+                        name.push(arry[i][0]);
+                    };
+                    return name;
+                };
+                ////获得数组值
+                function GetValue(arry) {
+                    var value = [];
+                    for (var i = 0; i < arry.length; i++) {
+                        value.push(arry[i][1]);
+                    };
+                    return value;
+                };
+
+                var sortArry = GetSortArry(data1, data2, data3, data4);
+                //排序，从小到大
+                sortArry.sort(function (a, b) {
+                    return a[1] - b[1]
+                });
+                var teamName = GetName(data1);
+                var v1 = GetValue(data1);
+                var v2 = GetValue(data2);
+                var v3 = GetValue(data3);
+                var v4 = GetValue(data4);
+                var totalValue = GetValue(sortArry);
+                var total = 0;
+                for (var i = 0; i < totalValue.length; i++) {
+                    total += totalValue[i];
+                }
+                document.getElementById("total_bullet").innerHTML = "总数：" + total;
+                document.getElementById("title_bullet").innerHTML = "各支队枪弹异常总数排名（12月份）";
+
+                option = {
+                    color: ['#1985f4', '#0fadd0', '#d94133', '#fbad40'], //设置每个图例的颜色
+                    tooltip: //提示
+                    {
+                        trigger: 'axis',
+                        axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                            type: 'shadow'
+                        },
+                        confine: true
+                    },
+                    legend: //图例
+                    {
+                        show: false,
+                        data: barName
+                    },
+                    grid: //表格间距
+                    {
+                        top: 10,
+                        left: 0,
+                        right: 20,
+                        bottom: 0,
+                        borderColor: '#fff',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'value',
+                        show: false
+                    },
+                    yAxis: {
+                        boundaryGap: false,
+                        type: 'category',
+                        data: teamName,
+                        axisLine: {
+                            lineStyle: {
+                                opacity: 0
+                            }
+                        },
+                        offset: 70,
+                        axisTick: false,
+                        axisLabel: {
+                            show: true,
+                            interval: 0,
+                            color: '#fff',
+                            align: 'left',
+                            fontFamily: 'Microsoft YaHei',
+                        },
+                    },
+                    series: [{
+                            name: barName[0],
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data: v1,
+                        },
+                        {
+                            name: barName[1],
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data: v2,
+                        },
+                        {
+                            name: barName[2],
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data: v3,
+                        },
+                        {
+                            name: barName[3],
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'right',
+                                    color: '#fff',
+                                    fontSize: 10,
+                                    formatter: function (params) {
+                                        return totalValue[params.dataIndex]
+                                    }
+                                }
+                            },
+                            data: v4,
+                        }
+                    ]
+                };;
+                if (option && typeof option === "object") {
+                    chart.setOption(option, true);
+                }
+            };
+
+            // <!--堆叠柱状图3-->
+            function initialize_Histogram3(chart) {
+                var app = {};
+                option = null;
+                //模拟数据
+                var barName = ['好', '中', '差'];
+                var data1 = [
+                    ["张家口支市队", 10],
+                    ["承德市支队", 20],
+                    ["秦皇岛市支队", 30],
+                    ["唐山市支队", 40],
+                    ["廊坊市支队", 50],
+                    ["保定市支队", 60],
+                    ["沧州市支队", 70],
+                    ["石家庄支市队", 80]
+                ];
+                var data2 = [
+                    ["张家口支市队", 10],
+                    ["承德市支队", 20],
+                    ["秦皇岛市支队", 30],
+                    ["唐山市支队", 40],
+                    ["廊坊市支队", 50],
+                    ["保定市支队", 60],
+                    ["沧州市支队", 70],
+                    ["石家庄支市队", 80]
+                ];
+                var data3 = [
+                    ["张家口支市队", 10],
+                    ["承德市支队", 20],
+                    ["秦皇岛市支队", 30],
+                    ["唐山市支队", 40],
+                    ["廊坊市支队", 50],
+                    ["保定市支队", 60],
+                    ["沧州市支队", 70],
+                    ["石家庄支市队", 80]
+                ];
+                //获得各支队的报警次数总和
+                function GetSortArry(data1, data2, data3) {
+                    var res = [];
+                    for (var i = 0; i < data1.length; i++) {
+                        res.push([
+                            data1[i][0],
+                            data1[i][1] + data2[i][1] + data3[i][1]
+                        ]);
+                    }
+                    return res;
+                };
+                //获得数组名
+                function GetName(arry) {
+                    var name = [];
+                    for (var i = 0; i < arry.length; i++) {
+                        name.push(arry[i][0]);
+                    };
+                    return name;
+                };
+                ////获得数组值
+                function GetValue(arry) {
+                    var value = [];
+                    for (var i = 0; i < arry.length; i++) {
+                        value.push(arry[i][1]);
+                    };
+                    return value;
+                };
+
+                var sortArry = GetSortArry(data1, data2, data3);
+                //排序，从小到大
+                sortArry.sort(function (a, b) {
+                    return a[1] - b[1]
+                });
+                var teamName = GetName(data1);
+                var v1 = GetValue(data1);
+                var v2 = GetValue(data2);
+                var v3 = GetValue(data3);
+                var totalValue = GetValue(sortArry) / 3;
+                var total = 0;
+                for (var i = 0; i < totalValue.length; i++) {
+                    total += totalValue[i];
+                }
+                //document.getElementById("total_examine").innerHTML = "总数：" + total;
+                document.getElementById("title_examine").innerHTML = "各支队哨位评分排名（12月份）";
+
+                option = {
+                    color: ['#d94133', '#fbad40', '#71ed1d'], //设置每个图例的颜色
+                    tooltip: //提示
+                    {
+                        trigger: 'axis',
+                        axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                            type: 'shadow'
+                        },
+                        confine: true
+                    },
+                    legend: //图例
+                    {
+                        show: false,
+                        data: barName
+                    },
+                    grid: //表格间距
+                    {
+                        top: 10,
+                        left: 0,
+                        right: 20,
+                        bottom: 0,
+                        borderColor: '#fff',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'value',
+                        show: false
+                    },
+                    yAxis: {
+                        offset: 70,
+                        boundaryGap: false,
+                        type: 'category',
+                        data: teamName,
+                        axisLine: {
+                            lineStyle: {
+                                opacity: 0
+                            }
+                        },
+                        axisTick: false,
+                        axisLabel: {
+                            show: true,
+                            interval: 0,
+                            color: '#fff',
+                            align: 'left',
+                            fontFamily: 'Microsoft YaHei',
+                        },
+                    },
+                    series: [{
+                            name: barName[0],
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data: v1,
+                        },
+                        {
+                            name: barName[1],
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data: v2,
+                        },
+                        { //第6各+总数
+                            name: barName[2],
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'right',
+                                    color: '#fff',
+                                    fontSize: 10,
+                                    formatter: function (params) {
+                                        return totalValue[params.dataIndex]
+                                    }
+                                }
+                            },
+                            data: v3,
+                        }
+                    ]
+                };;
+                if (option && typeof option === "object") {
+                    chart.setOption(option, true);
+                }
+            };
+
+            //    <!--饼图1-->
+            function initialize_Pie1(chart) {
+                var app = {};
+                option = null;
+                //模拟数据
+                var cpData = [{
+                        value: 56,
+                        name: '暴狱'
+                    },
+                    {
+                        value: 45,
+                        name: '逃跑'
+                    },
+                    {
+                        value: 62,
+                        name: '袭击'
+                    },
+                    {
+                        value: 66,
+                        name: '灾害'
+                    },
+                    {
+                        value: 80,
+                        name: '劫持'
+                    },
+                    {
+                        value: 90,
+                        name: '突发'
+                    },
+                    {
+                        value: 100,
+                        name: '周界'
+                    }
+                ];
+
+                option = {
+                    color: ['#1985f4', '#d94133', '#71ed1d', '#0fadd0', '#fbad40', '#bbf2f4',
+                    '#9a3adc'], //设置每个图例的颜色
+                    series: [{
+                        type: 'pie',
+                        radius: [0, '47%'],
+                        //center: ['50%', '55%'],
+                        hoverAnimation: false,
+                        stillShowZeroSum: false,
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'outside',
+                                //align: 'left',
+                                formatter: ["{b}: {c}", '({d}%)'].join('\n'),
+                                //fontSize: 10,
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                length: 10,
+                                length2: 5,
+                            },
+                        },
+                        data: cpData,
+                    }]
+                };;
+                if (option && typeof option === "object") {
+                    chart.setOption(option, true);
+                }
+            };
+
+            //  <!--饼图2-->
+
+            function initialize_Pie2(chart) {
+                var app = {};
+                option = null;
+                //模拟数据
+                var abnormalData = [{
+                        value: 335,
+                        name: '非法打开'
+                    },
+                    {
+                        value: 310,
+                        name: '离岗报警'
+                    },
+                    {
+                        value: 234,
+                        name: '巡逻偏移'
+                    },
+                    {
+                        value: 135,
+                        name: '信号异常'
+                    }
+                ];
+
+                option = {
+                    color: ['#1985f4', '#d94133', '#0fadd0', '#fbad40'], //设置每个图例的颜色
+                    series: [{
+                        type: 'pie',
+                        radius: [0, '47%'],
+                        hoverAnimation: false,
+                        stillShowZeroSum: false,
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'outside',
+                                align: 'left',
+                                formatter: ["{b}", '{c}', '{d}%'].join('\n'),
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                length: 10,
+                                length2: 5,
+                            },
+                        },
+                        data: abnormalData,
+                    }]
+                };;
+                if (option && typeof option === "object") {
+                    chart.setOption(option, true);
+                }
+            };
+
+            //   <!--饼图3-->
+            function initialize_Pie3(chart) {
+                var app = {};
+                option = null;
+                //模拟数据
+                var evaluationData = [{
+                        value: 335,
+                        name: '好'
+                    },
+                    {
+                        value: 310,
+                        name: '中'
+                    },
+                    {
+                        value: 234,
+                        name: '差'
+                    }
+                ];
+
+                option = {
+                    color: ['#d94133', '#fbad40', '#70ed1d'], //设置每个图例的颜色
+                    series: [{
+                        type: 'pie',
+                        radius: [0, '50%'],
+                        hoverAnimation: false,
+                        stillShowZeroSum: false,
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'outside',
+                                align: 'left',
+                                formatter: ["{b}: {c}", '({d}%)'].join('\n'),
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                length: 10,
+                                length2: 5,
+                            },
+                        },
+                        data: evaluationData,
+                    }]
+                };;
+                if (option && typeof option === "object") {
+                    chart.setOption(option, true);
+                };
+            };
+
+        });
+    </script>
+</body>
+
+</html>
